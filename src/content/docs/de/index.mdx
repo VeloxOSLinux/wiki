@@ -1,14 +1,36 @@
 ---
-title: VeloxOS Wiki
-description: Speed and Stability.
+title: Willkommen im VeloxOS Wiki
+description: Die Geschwindigkeit von CachyOS trifft auf die Stabilität von Manjaro.
 template: splash
 hero:
-  tagline: Welcome to the documentation.
+  tagline: Performance-optimiertes Linux für moderne Hardware.
+  image:
+    file: ../../../assets/logo.png
   actions:
-    - text: Get Started
-      link: /guides/installation/
+    - text: Erste Schritte
+      link: /de/guides/installation/
       icon: right-arrow
       variant: primary
+    - text: Hauptseite
+      link: https://veloxos.org
+      icon: external
 ---
-## Getting Started
-Content will follow.
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Warum VeloxOS?
+
+<CardGrid stagger>
+	<Card title="Maximale Speed" icon="rocket">
+		Optimierter **CachyOS Kernel** und x86-64-v3/v4 Pakete.
+	</Card>
+	<Card title="Stabile Basis" icon="setting">
+		Die Zuverlässigkeit von **Manjaro** für den täglichen Einsatz.
+	</Card>
+	<Card title="Gaming bereit" icon="discord">
+		Vorkonfiguriert für Steam, Heroic und Wine Performance.
+	</Card>
+	<Card title="Open Source" icon="github">
+		Vollkommen transparent und von der Community getrieben.
+	</Card>
+</CardGrid>
