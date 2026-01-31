@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 export default defineConfig({
-	site: 'https://wiki.veloxos.org',
+	site: 'https://wiki.veloxos.org/en',
 	integrations: [
 		starlight({
 			title: 'VeloxOS Documentation',
