@@ -7,8 +7,15 @@ export default defineConfig({
 	site: 'https://wiki.veloxos.org',
 	integrations: [
 		starlight({
-			title: 'VeloxOS Dokumentation',
-                        favicon: '/favicon.svg',
+			title: 'VeloxOS Documentation',
+			defaultLocale: 'en', // UI auf Englisch setzen
+			locales: {
+				en: {
+					label: 'English',
+					lang: 'en',
+				},
+			},
+			favicon: '/favicon.svg',
 			logo: {
 				// Nutzt das lokal gespeicherte Logo
 				src: './src/assets/logo.png',
@@ -31,14 +38,10 @@ export default defineConfig({
 					autogenerate: { directory: 'guides' },
 				},
 				{
-					label: 'Referenz',
-				        autogenerate: { directory: 'reference' },
+					label: 'Reference',
+					autogenerate: { directory: 'reference' },
 				},
 			],
-			// Optional: "Seite bearbeiten" Link (GitHub Integration)
-			editLink: {
-				baseUrl: 'https://github.com/hrskully/veloxos-wiki/edit/main/',
-			},
 		}),
 	],
 });
