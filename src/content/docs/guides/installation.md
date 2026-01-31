@@ -22,10 +22,10 @@ Before you begin, make sure you have the following ready:
 
 Use a tool like **Ventoy**, **Etcher**, or **dd** to flash the ISO onto your USB drive.
 
-\`\`\`bash
+```bash
 # Example for Linux users (make sure to check your drive path!)
 sudo dd bs=4M if=veloxos-latest.iso of=/dev/sdX status=progress oflag=sync
-\`\`\`
+```
 
 ## 2. The Installation Process
 
