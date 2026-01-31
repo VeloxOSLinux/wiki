@@ -1,4 +1,3 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
@@ -11,27 +10,20 @@ export default defineConfig({
 			locales: {
 				en: {
 					label: 'English',
-					lang: 'en', // Dies ist jetzt die "Hauptsprache"
+					lang: 'en',
 				},
 			},
 			favicon: '/favicon.svg',
 			logo: {
 				src: './src/assets/logo.png',
 			},
-			customCss: [
-				'./src/styles/custom.css',
-			],
+			customCss: ['./src/styles/custom.css'],
 			social: [
-				{ 
-					icon: 'github', 
-					label: 'GitHub', 
-					href: 'https://github.com/hrskully' 
-				}
+				{ icon: 'github', href: 'https://github.com/hrskully' }
 			],
 			sidebar: [
 				{
 					label: 'Guides',
-					// WICHTIG: Hier muss 'en/guides' stehen, wenn der Ordner docs/en/guides heißt
 					autogenerate: { directory: 'en/guides' },
 				},
 				{
