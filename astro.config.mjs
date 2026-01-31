@@ -3,10 +3,6 @@ import starlight from '@astrojs/starlight';
 
 export default defineConfig({
 	site: 'https://wiki.veloxos.org',
-	// Das hier leitet die Hauptdomain automatisch weiter:
-	redirects: {
-		'/': '/en/'
-	},
 	integrations: [
 		starlight({
 			title: 'VeloxOS Documentation',
@@ -29,10 +25,6 @@ export default defineConfig({
 				{
 					label: 'Guides',
 					autogenerate: { directory: 'en/guides' },
-				},
-				{
-					label: 'Reference',
-					autogenerate: { directory: 'en/reference' },
 				},
 			],
 		}),
