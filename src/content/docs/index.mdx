@@ -1,40 +1,49 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: Willkommen im VeloxOS Wiki
+description: Alles über die Geschwindigkeit von CachyOS und die Stabilität von Manjaro.
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: Hier findest du alle Informationen zur Installation, Konfiguration und den Features von VeloxOS.
   image:
-    file: ../../assets/houston.webp
+    file: ../../assets/logo.png
   actions:
-    - text: Example Guide
+    - text: Erste Schritte
       link: /guides/example/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+      variant: primary
+    - text: Zur Hauptseite
+      link: https://veloxos.org
       icon: external
-      variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## Warum VeloxOS?
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+	<Card title="Maximale Geschwindigkeit" icon="rocket">
+		Durch den optimierten **CachyOS Kernel** und x86-64-v3/v4 Pakete holst du das Beste aus deiner Hardware heraus.
 	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
+	<Card title="Felsenfeste Basis" icon="setting">
+		Die Stabilität von **Manjaro** sorgt dafür, dass dein System auch bei täglicher Nutzung zuverlässig bleibt.
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title="Gaming & Performance" icon="discord">
+		Vorkonfigurierte Tools wie Steam und Heroic ermöglichen ein reibungsloses Gaming-Erlebnis ohne langes Setup.
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+	<Card title="Privatsphäre zuerst" icon="github">
+		Kein AI-Bloat, keine Telemetrie. Dein System gehört dir, und nur dir.
 	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+</CardGrid>
+
+---
+
+## Nächste Schritte
+
+<CardGrid>
+	<Card title="Dokumentation erweitern" icon="pencil">
+		Bearbeite diese Seite in `src/content/docs/index.mdx`, um neue Inhalte hinzuzufügen.
+	</Card>
+	<Card title="Guides lesen" icon="open-book">
+		Schau in unsere [Guides](/guides/example/), um mehr über die Installation zu erfahren.
 	</Card>
 </CardGrid>

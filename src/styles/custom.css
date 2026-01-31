@@ -1,0 +1,42 @@
+/* Gemeinsame Werte (Akzente bleiben in beiden Modi gleich) */
+:root {
+	--sl-color-accent-low: #1e293b;
+	--sl-color-accent: #3b82f6;
+	--sl-color-accent-high: #93c5fd;
+}
+
+/* Spezifisch für das Light-Theme (Standard) */
+:root[data-theme='light'] {
+	--sl-color-white: #0f172a;
+	--sl-color-gray-1: #23262f;
+	--sl-color-gray-2: #3e4451;
+	--sl-color-gray-3: #666c79;
+	--sl-color-gray-4: #9ea3af;
+	--sl-color-gray-5: #c0c4ce;
+	--sl-color-gray-6: #eceef2;
+	--sl-color-black: #ffffff; /* Heller Hintergrund im Light-Mode */
+}
+
+/* Spezifisch für das Dark-Theme */
+:root[data-theme='dark'] {
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #eceef2;
+	--sl-color-gray-2: #c0c4ce;
+	--sl-color-gray-3: #9ea3af;
+	--sl-color-gray-4: #666c79;
+	--sl-color-gray-5: #3e4451;
+	--sl-color-gray-6: #23262f;
+	--sl-color-black: #0f172a; /* Dunkler Hintergrund im Dark-Mode */
+}
+
+/* Design-Tweaks für beide Modi */
+pre {
+	border-radius: 8px !important;
+	border: 1px solid var(--sl-color-gray-5) !important;
+}
+
+header {
+	border-bottom: 1px solid var(--sl-color-gray-5) !important;
+	backdrop-filter: blur(8px);
+    background-color: var(--sl-color-black) !important;
+}
