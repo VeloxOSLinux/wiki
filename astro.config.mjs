@@ -7,11 +7,15 @@ export default defineConfig({
 		starlight({
 			title: 'VeloxOS Documentation',
 			defaultLocale: 'root',
-			root: {
-				en: {
+			locales: {
+				root: {
 					label: 'English',
 					lang: 'en',
 				},
+                                de: {
+                                        label: 'German',
+                                        lang: 'de',
+                                },
 			},
 			favicon: '/favicon.svg',
 			logo: {
