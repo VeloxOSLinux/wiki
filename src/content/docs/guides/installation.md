@@ -1,52 +1,39 @@
 ---
 title: VeloxOS Installation
-description: Step-by-step guide to installing VeloxOS.
+description: Official step-by-step installation guide.
 sidebar:
   order: 1
 ---
 
-Welcome to the official VeloxOS installation guide. This guide will walk you through the process from preparation to your first successful boot.
+This guide describes the installation process using the VeloxOS Live-ISO.
 
-:::tip[Hardware Recommendation]
-For the best experience with our x86-64-v3 optimizations, we recommend an Intel Haswell generation CPU (ca. 2013) or newer, or any AMD Ryzen processor.
-:::
+## 1. Booting the ISO
 
-## Preparation
+When you boot from the USB drive, you will be greeted by the **GRUB boot menu** (Manjaro-style). Before starting the system, you can configure the following:
 
-Before you begin, make sure you have the following ready:
-- A VeloxOS ISO image (from [veloxos.org](https://veloxos.org))
-- A USB flash drive with at least 8GB of storage
-- A stable internet connection
+* **tz (Timezone):** Set your local time.
+* **keytable:** Choose your keyboard layout.
+* **lang:** Set the system language.
+* **driver:** Choose between **free** (open-source) or **nonfree** (proprietary, recommended for NVIDIA users) drivers.
 
-## 1. Create Installation Media
+Select **"Boot with ..."** and press Enter.
 
-Use a tool like **Ventoy**, **Etcher**, or **dd** to flash the ISO onto your USB drive.
+## 2. Using the Installer
 
-```bash
-# Example for Linux users (make sure to check your drive path!)
-sudo dd bs=4M if=veloxos-latest.iso of=/dev/sdX status=progress oflag=sync
-```
+Once the desktop environment has loaded, the **Calamares Installer** will start automatically.
 
-## 2. The Installation Process
-
-VeloxOS uses an intuitive graphical installer. Follow these steps:
-
-1. **Boot** from your USB drive.
-2. Select **"VeloxOS Live System"** from the boot menu.
-3. Start the **Installer** from the desktop icon.
-4. Choose your language, keyboard layout, and timezone.
-5. **Partitioning:** We recommend selecting "Erase disk" with "Swap (with Hibernate)".
+### Key Steps in Calamares:
+1.  **Welcome:** Confirm your language.
+2.  **Location & Keyboard:** These should be pre-set from your GRUB choices.
+3.  **Partitions:** * Since VeloxOS uses **zRAM** for high-performance memory compression, a physical swap partition is often unnecessary.
+    * Select **"Erase Disk"** and choose **"No Swap"** unless you specifically need Hibernation (Suspend-to-Disk).
+4.  **Users:** Create your main user account and set a password.
+5.  **Summary:** Double-check your settings before clicking **Install**.
 
 ## 3. Post-Installation
 
-After the first reboot, VeloxOS will guide you through a quick setup to update your system.
+After the installation is complete, restart your computer and remove the USB drive.
 
-- [ ] Run system updates
-- [ ] Check graphics drivers
-- [ ] Set up Steam/Gaming tools (optional)
-
----
-
-## Troubleshooting
-
-If you encounter any issues during boot, please check our [Reference](/reference/structure) to learn more about specific kernel parameters.
+:::tip[Performance Note]
+VeloxOS automatically manages your zRAM configuration. No further manual setup for swap is required for optimal performance.
+:::
