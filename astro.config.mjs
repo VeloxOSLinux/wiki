@@ -5,7 +5,7 @@ export default defineConfig({
 	site: 'https://wiki.veloxos.org',
 	integrations: [
 		starlight({
-			title: 'VeloxOS Documentation',
+			title: 'VeloxOS',
 			defaultLocale: 'root',
 			locales: {
 				root: { label: 'English', lang: 'en' },
