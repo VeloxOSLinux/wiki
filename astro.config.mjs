@@ -6,8 +6,8 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'VeloxOS Documentation',
-			defaultLocale: 'en',
-			locales: {
+			defaultLocale: 'root',
+			root: {
 				en: {
 					label: 'English',
 					lang: 'en',
