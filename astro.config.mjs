@@ -6,7 +6,7 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'VeloxOS Documentation',
-			defaultLocale: 'en',
+			defaultLocale: 'en', // Erwartet Inhalte in /en/
 			locales: {
 				en: {
 					label: 'English',
@@ -17,18 +17,10 @@ export default defineConfig({
 			logo: {
 				src: './src/assets/logo.png',
 			},
-			customCss: ['./src/styles/custom.css'],
-			social: [
-				{ icon: 'github', href: 'https://github.com/hrskully' }
-			],
 			sidebar: [
 				{
 					label: 'Guides',
 					autogenerate: { directory: 'en/guides' },
-				},
-				{
-					label: 'Reference',
-					autogenerate: { directory: 'en/reference' },
 				},
 			],
 		}),
