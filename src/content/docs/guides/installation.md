@@ -1,40 +1,52 @@
 ---
 title: VeloxOS Installation
-description: Schritt-für-Schritt Anleitung zur Installation von VeloxOS.
+description: Step-by-step guide to installing VeloxOS.
 sidebar:
   order: 1
 ---
 
-Willkommen zur offiziellen Installationsanleitung von VeloxOS. Diese Anleitung führt dich durch den Prozess von der Vorbereitung bis zum ersten Systemstart.
+Welcome to the official VeloxOS installation guide. This guide will walk you through the process from preparation to your first successful boot.
 
-:::tip[Hardware-Empfehlung]
-Für das beste Erlebnis mit den x86-64-v3 Optimierungen empfehlen wir eine CPU ab der Intel Haswell-Generation (ca. 2013) oder AMD Ryzen.
+:::tip[Hardware Recommendation]
+For the best experience with our x86-64-v3 optimizations, we recommend an Intel Haswell generation CPU (ca. 2013) or newer, or any AMD Ryzen processor.
 :::
 
-## Vorbereitung
+## Preparation
 
-Bevor du beginnst, stelle sicher, dass du folgende Dinge bereit hast:
-- Ein VeloxOS ISO-Image (von [veloxos.org](https://veloxos.org))
-- Einen USB-Stick mit mindestens 8GB Speicher
-- Eine stabile Internetverbindung
+Before you begin, make sure you have the following ready:
+- A VeloxOS ISO image (from [veloxos.org](https://veloxos.org))
+- A USB flash drive with at least 8GB of storage
+- A stable internet connection
 
-## 1. Installationsmedium erstellen
+## 1. Create Installation Media
 
-Verwende ein Tool wie **Ventoy** oder **Etcher**, um das ISO auf deinen USB-Stick zu flashen.
+Use a tool like **Ventoy**, **Etcher**, or **dd** to flash the ISO onto your USB drive.
 
-```bash
-# Beispiel für Linux-User (bitte Laufwerkspfad prüfen!)
+\`\`\`bash
+# Example for Linux users (make sure to check your drive path!)
 sudo dd bs=4M if=veloxos-latest.iso of=/dev/sdX status=progress oflag=sync
+\`\`\`
 
-## 2. Der Installationsprozess
-VeloxOS nutzt einen intuitiven grafischen Installer. Folge diesen Schritten:
-1. Boote vom USB-Stick.
-2. Wähle im Boot-Menü "VeloxOS Live-System" aus.
-3. Starte den Installer auf dem Desktop.
-4. Wähle deine Sprache, Tastaturlayout und Zeitzone.
-5. Partitionierung: Wir empfehlen "Festplatte löschen" mit Swap (Hibernate).
+## 2. The Installation Process
 
-## Fehlerbehebung
-Solltest du Probleme beim Booten haben, schaue in unsere Referenz, um mehr über die Kernel-Parameter zu erfahren.
+VeloxOS uses an intuitive graphical installer. Follow these steps:
 
+1. **Boot** from your USB drive.
+2. Select **"VeloxOS Live System"** from the boot menu.
+3. Start the **Installer** from the desktop icon.
+4. Choose your language, keyboard layout, and timezone.
+5. **Partitioning:** We recommend selecting "Erase disk" with "Swap (with Hibernate)".
 
+## 3. Post-Installation
+
+After the first reboot, VeloxOS will guide you through a quick setup to update your system.
+
+- [ ] Run system updates
+- [ ] Check graphics drivers
+- [ ] Set up Steam/Gaming tools (optional)
+
+---
+
+## Troubleshooting
+
+If you encounter any issues during boot, please check our [Reference](/reference/structure) to learn more about specific kernel parameters.
