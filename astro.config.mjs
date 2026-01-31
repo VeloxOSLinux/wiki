@@ -17,14 +17,10 @@ export default defineConfig({
 			logo: {
 				src: './src/assets/logo.png',
 			},
-			customCss: ['./src/styles/custom.css'],
-			social: [
-				{ icon: 'github', href: 'https://github.com/hrskully' }
-			],
 			sidebar: [
 				{
 					label: 'Guides',
-					autogenerate: { directory: 'en/guides' },
+					autogenerate: { directory: 'guides' },
 				},
 			],
 		}),
