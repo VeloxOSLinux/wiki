@@ -7,6 +7,9 @@ export default defineConfig({
 		starlight({
 			title: 'VeloxOS',
 			defaultLocale: 'root',
+			customCss: [
+                './src/styles/custom.css',
+            ],
 			locales: {
 				root: { label: 'English', lang: 'en' },
 				de: { label: 'German', lang: 'de' },
