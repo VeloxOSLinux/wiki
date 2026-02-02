@@ -1,4 +1,4 @@
-/* 1. AKZENTFARBEN & VARIABLEN */
+/* 1. AKZENTFARBEN */
 :root {
     --sl-color-accent-low: #002d5a !important; 
     --sl-color-accent: #0066ff !important;
@@ -8,58 +8,48 @@
 /* 2. DARK MODE OPTIMIERUNG */
 :root[data-theme='dark'] {
     --sl-color-black: #0b0e14 !important; 
-    --sl-color-gray-6: #161b22 !important; /* Sidebar-Grau */
-    --header-bg: rgba(22, 27, 34, 0.8) !important;
+    --sl-color-gray-6: #161b22 !important; 
+    --header-bg: rgba(22, 27, 34, 0.8); 
 }
 
 /* 3. LIGHT MODE FIX */
 :root[data-theme='light'] {
-    --header-bg: rgba(255, 255, 255, 0.8) !important;
+    --header-bg: rgba(255, 255, 255, 0.8);
 }
 
-/* 4. HEADER, LOGO & TITEL */
+/* 4. HEADER & LOGO-FIX */
 header {
     border-bottom: 1px solid var(--sl-color-gray-5) !important;
     backdrop-filter: blur(12px);
     background-color: var(--header-bg) !important;
+    height: 4.5rem !important; /* Fixe Höhe für den Header */
 }
 
-.site-title {
-    gap: 0.75rem !important;
+.header.sl-flex {
+    height: 100%;
+    align-items: center;
 }
 
 .site-title img {
-    height: 48px !important;  
+    height: 48px !important;    /* Logo Größe */
     width: auto !important;
-    max-height: none !important;
+    max-height: 40px !important; /* Begrenzung explizit setzen */
     max-width: none !important;
     object-fit: contain !important;
     filter: drop-shadow(0 0 8px rgba(0, 102, 255, 0.2));
 }
 
-/* Verhindert, dass der Header bei einem größeren Logo zu klein wirkt */
-header {
-    min-height: 4.5rem !important; 
-    display: flex;
-    align-items: center;
-}
-
-/* VeloxOS Text im Dark Mode strahlend weiß */
+/* VeloxOS Text neben dem Logo */
 :root[data-theme='dark'] .site-title span {
     color: #ffffff !important;
     font-weight: 700 !important;
-    letter-spacing: 0.05rem;
 }
 
-/* 5. SOCIAL ICONS (CachyOS Style) */
-.social-icons a {
-    padding: 0.5rem !important;
-}
-
-.social-icons svg {
-    width: 1.5rem !important; /* Icons vergrößert */
-    height: 1.5rem !important;
-    transition: transform 0.2s ease, color 0.2s ease !important;
+/* 5. SOCIAL ICONS (Größer & schöner) */
+.social-icons a svg {
+    width: 1.4rem !important;
+    height: 1.4rem !important;
+    transition: transform 0.2s ease !important;
 }
 
 .social-icons a:hover svg {
@@ -67,14 +57,13 @@ header {
     transform: scale(1.1);
 }
 
-/* 6. BUTTON STYLING & BREITE */
+/* 6. BUTTON STYLING */
 .sl-link-button {
     transition: all 0.2s ease-in-out !important;
     border-radius: 8px !important;
     padding: 0.8rem 2.5rem !important; 
     min-width: 180px;
     justify-content: center;
-    font-weight: 600 !important;
 }
 
 .sl-link-button.primary:hover {
@@ -98,78 +87,37 @@ header {
     transform: translateY(-2px);
 }
 
-/* 7. SUCHLEISTE (Pill-Design) */
+/* 7. SUCHLEISTE (Pill) */
 site-search button {
     border-radius: 999px !important;
-    border: 1px solid var(--sl-color-gray-5) !important;
     background-color: var(--sl-color-black) !important;
-    transition: border-color 0.2s ease !important;
 }
 
-site-search button:hover {
-    border-color: var(--sl-color-accent) !important;
-}
-
-/* 8. SIDEBAR NAVIGATION */
-.sidebar-content a {
-    border-radius: 6px !important;
-    margin: 1px 0;
-    transition: all 0.2s ease !important;
-}
-
+/* 8. SIDEBAR & CARDS */
 .sidebar-content a[aria-current="page"] {
     background-color: rgba(0, 102, 255, 0.1) !important;
     color: var(--sl-color-accent-high) !important;
     border-left: 3px solid var(--sl-color-accent) !important;
-    font-weight: 600 !important;
 }
 
-/* 9. CARDS (Glas-Effekt) */
 .card {
     background-color: rgba(22, 27, 34, 0.4) !important;
     backdrop-filter: blur(8px);
     border: 1px solid var(--sl-color-gray-5) !important;
-    transition: transform 0.3s ease, border-color 0.3s ease !important;
 }
 
 .card:hover {
     transform: translateY(-5px);
     border-color: var(--sl-color-accent) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.card .icon {
-    color: var(--sl-color-accent) !important;
-    filter: drop-shadow(0 0 5px rgba(0, 102, 255, 0.4));
-}
+/* 9. SCROLLBAR */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: var(--sl-color-gray-5); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--sl-color-accent); }
 
-/* 10. SCROLLBAR */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--sl-color-black);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--sl-color-gray-5);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--sl-color-accent);
-}
-
-/* 11. SONSTIGES & MOBILE */
-pre {
-    border-radius: 12px !important;
-    border: 1px solid var(--sl-color-gray-5) !important;
-    background-color: #0d1117 !important;
-}
-
+/* 10. MOBILE FIXES */
 @media (max-width: 50rem) {
-    .sl-link-button {
-        min-width: 100%;
-    }
+    .sl-link-button { min-width: 100%; }
+    header { height: auto !important; }
 }
