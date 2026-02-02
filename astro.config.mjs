@@ -11,7 +11,7 @@ export default defineConfig({
 				root: { label: 'English', lang: 'en' },
 				de: { label: 'German', lang: 'de' },
 			},
-			favicon: '/favicon.svg',
+			favicon: '/./src/assets/logo.png'',
 			logo: { src: './src/assets/logo.png' },
 			sidebar: [
 				{
@@ -23,6 +23,10 @@ export default defineConfig({
                                         autogenerate: { directory: 'reference' },
                                 },
 			],
+			editLink: {
+				baseUrl: 'https://github.com/VeloxOSLinux/wiki/',
+			},
+			lastUpdated: true,
 		}),
 	],
 });
