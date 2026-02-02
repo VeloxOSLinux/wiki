@@ -1,8 +1,8 @@
-/* Gemeinsame Werte (Akzente bleiben in beiden Modi gleich) */
+/* Gemeinsame Werte (Akzente an das Logo angepasst) */
 :root {
-	--sl-color-accent-low: #1e293b;
-	--sl-color-accent: #3b82f6;
-	--sl-color-accent-high: #93c5fd;
+	--sl-color-accent-low: #002d5a;  /* Dunkleres Blau für Kontraste */
+	--sl-color-accent: #007bff;      /* Das kräftige Logo-Blau */
+	--sl-color-accent-high: #80bdff; /* Hellere Variante für Hover/Effekte */
 }
 
 /* Spezifisch für das Light-Theme (Standard) */
@@ -39,4 +39,19 @@ header {
 	border-bottom: 1px solid var(--sl-color-gray-5) !important;
 	backdrop-filter: blur(8px);
     background-color: var(--sl-color-black) !important;
+}
+
+/* Button-Anpassung: Main Page (minimalistischer/dunkler) */
+/* Starlight nutzt für sekundäre Buttons oft die Klasse .secondary */
+a[href="/"].secondary, 
+a[href="/"].minimal {
+    background-color: var(--sl-color-gray-6) !important;
+    color: var(--sl-color-gray-2) !important;
+    border: 1px solid var(--sl-color-gray-5) !important;
+    opacity: 0.8;
+}
+
+a[href="/"].secondary:hover {
+    opacity: 1;
+    background-color: var(--sl-color-gray-5) !important;
 }
