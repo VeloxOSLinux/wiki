@@ -1,57 +1,59 @@
-/* Gemeinsame Werte (Akzente an das Logo angepasst) */
+/* 1. AKZENTFARBEN (Logo-Blau) */
 :root {
-	--sl-color-accent-low: #002d5a;  /* Dunkleres Blau für Kontraste */
-	--sl-color-accent: #007bff;      /* Das kräftige Logo-Blau */
-	--sl-color-accent-high: #80bdff; /* Hellere Variante für Hover/Effekte */
+	--sl-color-accent-low: #002d5a !important; 
+	--sl-color-accent: #0066ff !important;     /* Kräftiges Velox-Blau */
+	--sl-color-accent-high: #4da3ff !important;
 }
 
-/* Spezifisch für das Light-Theme (Standard) */
-:root[data-theme='light'] {
-	--sl-color-white: #0f172a;
-	--sl-color-gray-1: #23262f;
-	--sl-color-gray-2: #3e4451;
-	--sl-color-gray-3: #666c79;
-	--sl-color-gray-4: #9ea3af;
-	--sl-color-gray-5: #c0c4ce;
-	--sl-color-gray-6: #eceef2;
-	--sl-color-black: #ffffff; /* Heller Hintergrund im Light-Mode */
-}
-
-/* Spezifisch für das Dark-Theme */
+/* 2. DARK MODE OPTIMIERUNG (passend zur Hauptseite) */
 :root[data-theme='dark'] {
-	--sl-color-white: #ffffff;
-	--sl-color-gray-1: #eceef2;
-	--sl-color-gray-2: #c0c4ce;
-	--sl-color-gray-3: #9ea3af;
-	--sl-color-gray-4: #666c79;
-	--sl-color-gray-5: #3e4451;
-	--sl-color-gray-6: #23262f;
-	--sl-color-black: #0f172a; /* Dunkler Hintergrund im Dark-Mode */
+	--sl-color-black: #0b0e14 !important; /* Tieferes Schwarz */
+	--sl-color-gray-6: #161b22 !important; /* Card-Hintergrund */
 }
 
-/* Design-Tweaks für beide Modi */
-pre {
-	border-radius: 8px !important;
-	border: 1px solid var(--sl-color-gray-5) !important;
+/* 3. BUTTON STYLING & HOVER EFFEKTE */
+.sl-link-button {
+    transition: all 0.2s ease-in-out !important;
+    border-radius: 8px !important;
 }
 
-header {
-	border-bottom: 1px solid var(--sl-color-gray-5) !important;
-	backdrop-filter: blur(8px);
-    background-color: var(--sl-color-black) !important;
+/* Primärer Button (der blaue) Hover */
+.sl-link-button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4);
+    filter: brightness(1.1);
 }
 
-/* Button-Anpassung: Main Page (minimalistischer/dunkler) */
-/* Starlight nutzt für sekundäre Buttons oft die Klasse .secondary */
-a[href="/"].secondary, 
-a[href="/"].minimal {
-    background-color: var(--sl-color-gray-6) !important;
+/* 4. MAIN PAGE BUTTON (Dezent & Dunkel) */
+/* In Starlight ist das oft der 'secondary' oder 'minimal' Button auf der Hero-Page */
+.sl-link-button.secondary, 
+.sl-link-button.minimal,
+a[href="/"].sl-link-button,
+a[href="/de/"].sl-link-button {
+    background-color: rgba(255, 255, 255, 0.05) !important;
     color: var(--sl-color-gray-2) !important;
     border: 1px solid var(--sl-color-gray-5) !important;
-    opacity: 0.8;
 }
 
-a[href="/"].secondary:hover {
-    opacity: 1;
-    background-color: var(--sl-color-gray-5) !important;
+/* Hover für den dezenten Button */
+.sl-link-button.secondary:hover,
+.sl-link-button.minimal:hover,
+a[href="/"].sl-link-button:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: var(--sl-color-accent) !important;
+    color: var(--sl-color-white) !important;
+    transform: translateY(-2px);
+}
+
+/* 5. HEADER & UI TWEAKS */
+header {
+	border-bottom: 1px solid var(--sl-color-gray-5) !important;
+	backdrop-filter: blur(12px);
+    background-color: rgba(11, 14, 20, 0.8) !important; /* Semi-transparent wie auf der Hauptseite */
+}
+
+pre {
+	border-radius: 12px !important;
+	border: 1px solid var(--sl-color-gray-5) !important;
+    background-color: #0d1117 !important;
 }
