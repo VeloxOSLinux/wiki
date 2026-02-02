@@ -34,8 +34,8 @@ export default defineConfig({
                href: 'https://github.com/VeloxOSLinux',
             },
             {
-              icon: 'twitter',
-              label: 'Twitter',
+              icon: 'x',
+              label: 'X',
               href: 'https://x.com/veloxoslinux',
            },
            {
