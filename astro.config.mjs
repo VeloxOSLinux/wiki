@@ -11,7 +11,7 @@ export default defineConfig({
 				root: { label: 'English', lang: 'en' },
 				de: { label: 'German', lang: 'de' },
 			},
-			favicon: './src/assets/logo.png',
+			favicon: { src: './src/assets/logo.png' },
 			logo: { src: './src/assets/logo.png' },
 			sidebar: [
 				{
