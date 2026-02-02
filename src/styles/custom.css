@@ -29,9 +29,19 @@ header {
 }
 
 .site-title img {
-    height: 32px !important; /* Größeres Logo */
+    height: 48px !important;  
     width: auto !important;
+    max-height: none !important;
+    max-width: none !important;
+    object-fit: contain !important;
     filter: drop-shadow(0 0 8px rgba(0, 102, 255, 0.2));
+}
+
+/* Verhindert, dass der Header bei einem größeren Logo zu klein wirkt */
+header {
+    min-height: 4.5rem !important; 
+    display: flex;
+    align-items: center;
 }
 
 /* VeloxOS Text im Dark Mode strahlend weiß */
