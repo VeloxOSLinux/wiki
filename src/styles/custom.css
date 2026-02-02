@@ -70,3 +70,68 @@ pre {
         min-width: 100%;
     }
 }
+
+/* 1. SUCHLEISTE (Pill-Design) */
+site-search button {
+    border-radius: 999px !important;
+    border: 1px solid var(--sl-color-gray-5) !important;
+    background-color: var(--sl-color-black) !important;
+    transition: border-color 0.2s ease !important;
+}
+
+site-search button:hover {
+    border-color: var(--sl-color-accent) !important;
+}
+
+/* 2. SIDEBAR NAVIGATION (Moderner & Klarer) */
+.sidebar-content a {
+    border-radius: 6px !important;
+    margin: 1px 0;
+    transition: all 0.2s ease !important;
+}
+
+/* Aktiver Link in der Sidebar bekommt einen blauen Akzent */
+.sidebar-content a[aria-current="page"] {
+    background-color: rgba(0, 102, 255, 0.1) !important;
+    color: var(--sl-color-accent-high) !important;
+    border-left: 3px solid var(--sl-color-accent) !important;
+    font-weight: 600 !important;
+}
+
+/* 3. CARDS (Glas-Effekt & Hover) */
+.card {
+    background-color: rgba(22, 27, 34, 0.4) !important;
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--sl-color-gray-5) !important;
+    transition: transform 0.3s ease, border-color 0.3s ease !important;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--sl-color-accent) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Die Icons in den Cards in Logo-Blau einfärben */
+.card .icon {
+    color: var(--sl-color-accent) !important;
+    filter: drop-shadow(0 0 5px rgba(0, 102, 255, 0.4));
+}
+
+/* 4. SCROLLBAR (Dezent & Dunkel) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--sl-color-black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--sl-color-gray-5);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--sl-color-accent);
+}
