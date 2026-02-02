@@ -43,6 +43,7 @@ export default defineConfig({
               label: 'Discord',
               href: 'https://discord.gg/pgHSK8NGxG',
            },
+		   ],
 		}),
 	],
 });
