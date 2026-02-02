@@ -16,13 +16,17 @@ export default defineConfig({
 			logo: { src: './src/assets/logo.png' },
 			sidebar: [
 				{
+					label: 'Getting Started',
+					autogenerate: { directory: 'basics' },
+				},
+				{
 					label: 'Guides',
 					autogenerate: { directory: 'guides' },
 				},
-                                {
-                                        label: 'References',
-                                        autogenerate: { directory: 'reference' },
-                                },
+                {
+                    label: 'References',
+                    autogenerate: { directory: 'reference' },
+				},
 			],
 			editLink: {
 				baseUrl: 'https://github.com/VeloxOSLinux/wiki/',
