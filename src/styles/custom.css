@@ -1,39 +1,70 @@
-/* 1. AKZENTFARBEN */
+/* 1. AKZENTFARBEN & VARIABLEN */
 :root {
-	--sl-color-accent-low: #002d5a !important; 
-	--sl-color-accent: #0066ff !important;
-	--sl-color-accent-high: #4da3ff !important;
+    --sl-color-accent-low: #002d5a !important; 
+    --sl-color-accent: #0066ff !important;
+    --sl-color-accent-high: #4da3ff !important;
 }
 
 /* 2. DARK MODE OPTIMIERUNG */
 :root[data-theme='dark'] {
-	--sl-color-black: #0b0e14 !important; 
-	--sl-color-gray-6: #161b22 !important; /* Sidebar-Grau */
-    /* Header-Hintergrund für Dark Mode (Sidebar-ähnlich) */
-    --header-bg: rgba(22, 27, 34, 0.8); 
+    --sl-color-black: #0b0e14 !important; 
+    --sl-color-gray-6: #161b22 !important; /* Sidebar-Grau */
+    --header-bg: rgba(22, 27, 34, 0.8) !important;
 }
 
 /* 3. LIGHT MODE FIX */
 :root[data-theme='light'] {
-    /* Header-Hintergrund für Light Mode (Weißlich-Transparent) */
-    --header-bg: rgba(255, 255, 255, 0.8);
+    --header-bg: rgba(255, 255, 255, 0.8) !important;
 }
 
-/* 4. HEADER ANPASSUNG */
+/* 4. HEADER, LOGO & TITEL */
 header {
-	border-bottom: 1px solid var(--sl-color-gray-5) !important;
-	backdrop-filter: blur(12px);
-    /* Nutzt jetzt die variable Farbe je nach Modus */
+    border-bottom: 1px solid var(--sl-color-gray-5) !important;
+    backdrop-filter: blur(12px);
     background-color: var(--header-bg) !important;
 }
 
-/* 5. BUTTON STYLING & BREITE */
+.site-title {
+    gap: 0.75rem !important;
+}
+
+.site-title img {
+    height: 32px !important; /* Größeres Logo */
+    width: auto !important;
+    filter: drop-shadow(0 0 8px rgba(0, 102, 255, 0.2));
+}
+
+/* VeloxOS Text im Dark Mode strahlend weiß */
+:root[data-theme='dark'] .site-title span {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05rem;
+}
+
+/* 5. SOCIAL ICONS (CachyOS Style) */
+.social-icons a {
+    padding: 0.5rem !important;
+}
+
+.social-icons svg {
+    width: 1.5rem !important; /* Icons vergrößert */
+    height: 1.5rem !important;
+    transition: transform 0.2s ease, color 0.2s ease !important;
+}
+
+.social-icons a:hover svg {
+    color: var(--sl-color-accent) !important;
+    transform: scale(1.1);
+}
+
+/* 6. BUTTON STYLING & BREITE */
 .sl-link-button {
     transition: all 0.2s ease-in-out !important;
     border-radius: 8px !important;
-    padding: 0.8rem 2.5rem !important; /* Schön breit */
+    padding: 0.8rem 2.5rem !important; 
     min-width: 180px;
     justify-content: center;
+    font-weight: 600 !important;
 }
 
 .sl-link-button.primary:hover {
@@ -57,21 +88,7 @@ header {
     transform: translateY(-2px);
 }
 
-/* 6. SONSTIGE TWEAKS */
-pre {
-	border-radius: 12px !important;
-	border: 1px solid var(--sl-color-gray-5) !important;
-    background-color: #0d1117 !important;
-}
-
-/* Mobil-Optimierung für Buttons */
-@media (max-width: 50rem) {
-    .sl-link-button {
-        min-width: 100%;
-    }
-}
-
-/* 1. SUCHLEISTE (Pill-Design) */
+/* 7. SUCHLEISTE (Pill-Design) */
 site-search button {
     border-radius: 999px !important;
     border: 1px solid var(--sl-color-gray-5) !important;
@@ -83,14 +100,13 @@ site-search button:hover {
     border-color: var(--sl-color-accent) !important;
 }
 
-/* 2. SIDEBAR NAVIGATION (Moderner & Klarer) */
+/* 8. SIDEBAR NAVIGATION */
 .sidebar-content a {
     border-radius: 6px !important;
     margin: 1px 0;
     transition: all 0.2s ease !important;
 }
 
-/* Aktiver Link in der Sidebar bekommt einen blauen Akzent */
 .sidebar-content a[aria-current="page"] {
     background-color: rgba(0, 102, 255, 0.1) !important;
     color: var(--sl-color-accent-high) !important;
@@ -98,7 +114,7 @@ site-search button:hover {
     font-weight: 600 !important;
 }
 
-/* 3. CARDS (Glas-Effekt & Hover) */
+/* 9. CARDS (Glas-Effekt) */
 .card {
     background-color: rgba(22, 27, 34, 0.4) !important;
     backdrop-filter: blur(8px);
@@ -112,13 +128,12 @@ site-search button:hover {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* Die Icons in den Cards in Logo-Blau einfärben */
 .card .icon {
     color: var(--sl-color-accent) !important;
     filter: drop-shadow(0 0 5px rgba(0, 102, 255, 0.4));
 }
 
-/* 4. SCROLLBAR (Dezent & Dunkel) */
+/* 10. SCROLLBAR */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -134,4 +149,17 @@ site-search button:hover {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--sl-color-accent);
+}
+
+/* 11. SONSTIGES & MOBILE */
+pre {
+    border-radius: 12px !important;
+    border: 1px solid var(--sl-color-gray-5) !important;
+    background-color: #0d1117 !important;
+}
+
+@media (max-width: 50rem) {
+    .sl-link-button {
+        min-width: 100%;
+    }
 }
