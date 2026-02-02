@@ -12,6 +12,7 @@ export default defineConfig({
 				de: { label: 'German', lang: 'de' },
 			},
 			favicon: '/favicon.svg',
+			lastUpdated: true,
 			logo: { src: './src/assets/logo.png' },
 			sidebar: [
 				{
@@ -26,7 +27,22 @@ export default defineConfig({
 			editLink: {
 				baseUrl: 'https://github.com/VeloxOSLinux/wiki/',
 			},
-			lastUpdated: true,
+			social: [
+             {
+               icon: 'github',
+               label: 'GitHub',
+               href: 'https://github.com/VeloxOSLinux',
+            },
+            {
+              icon: 'twitter',
+              label: 'Twitter',
+              href: 'https://x.com/veloxoslinux',
+           },
+           {
+              icon: 'discord',
+              label: 'Discord',
+              href: 'https://discord.gg/pgHSK8NGxG',
+           },
 		}),
 	],
 });
