@@ -1,3 +1,8 @@
+---
+title: 🗺️ Roadmap 2026/2027
+description: VeloxOS ist in Arbeit. Unten aufgeführt sind die primären Meilensteine, auf die wir uns derzeit konzentrieren. Du kannst unseren Fortschritt hier verfolgen.
+---
+
 ## 🗺️ Roadmap 2026/2027
 VeloxOS ist in Arbeit. Unten aufgeführt sind die primären Meilensteine, auf die wir uns derzeit konzentrieren. Du kannst unseren Fortschritt hier verfolgen:
 
