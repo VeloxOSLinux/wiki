@@ -1,59 +1,72 @@
-/* 1. AKZENTFARBEN (Logo-Blau) */
+/* 1. AKZENTFARBEN */
 :root {
 	--sl-color-accent-low: #002d5a !important; 
-	--sl-color-accent: #0066ff !important;     /* Kräftiges Velox-Blau */
+	--sl-color-accent: #0066ff !important;
 	--sl-color-accent-high: #4da3ff !important;
 }
 
-/* 2. DARK MODE OPTIMIERUNG (passend zur Hauptseite) */
+/* 2. DARK MODE OPTIMIERUNG */
 :root[data-theme='dark'] {
-	--sl-color-black: #0b0e14 !important; /* Tieferes Schwarz */
-	--sl-color-gray-6: #161b22 !important; /* Card-Hintergrund */
+	--sl-color-black: #0b0e14 !important; 
+	--sl-color-gray-6: #161b22 !important; /* Sidebar-Grau */
+    /* Header-Hintergrund für Dark Mode (Sidebar-ähnlich) */
+    --header-bg: rgba(22, 27, 34, 0.8); 
 }
 
-/* 3. BUTTON STYLING & HOVER EFFEKTE */
+/* 3. LIGHT MODE FIX */
+:root[data-theme='light'] {
+    /* Header-Hintergrund für Light Mode (Weißlich-Transparent) */
+    --header-bg: rgba(255, 255, 255, 0.8);
+}
+
+/* 4. HEADER ANPASSUNG */
+header {
+	border-bottom: 1px solid var(--sl-color-gray-5) !important;
+	backdrop-filter: blur(12px);
+    /* Nutzt jetzt die variable Farbe je nach Modus */
+    background-color: var(--header-bg) !important;
+}
+
+/* 5. BUTTON STYLING & BREITE */
 .sl-link-button {
     transition: all 0.2s ease-in-out !important;
     border-radius: 8px !important;
+    padding: 0.8rem 2.5rem !important; /* Schön breit */
+    min-width: 180px;
+    justify-content: center;
 }
 
-/* Primärer Button (der blaue) Hover */
 .sl-link-button.primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4);
     filter: brightness(1.1);
 }
 
-/* 4. MAIN PAGE BUTTON (Dezent & Dunkel) */
-/* In Starlight ist das oft der 'secondary' oder 'minimal' Button auf der Hero-Page */
 .sl-link-button.secondary, 
-.sl-link-button.minimal,
-a[href="/"].sl-link-button,
-a[href="/de/"].sl-link-button {
-    background-color: rgba(255, 255, 255, 0.05) !important;
+.sl-link-button.minimal {
+    background-color: rgba(128, 128, 128, 0.1) !important;
     color: var(--sl-color-gray-2) !important;
     border: 1px solid var(--sl-color-gray-5) !important;
 }
 
-/* Hover für den dezenten Button */
 .sl-link-button.secondary:hover,
-.sl-link-button.minimal:hover,
-a[href="/"].sl-link-button:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important;
+.sl-link-button.minimal:hover {
+    background-color: rgba(128, 128, 128, 0.2) !important;
     border-color: var(--sl-color-accent) !important;
     color: var(--sl-color-white) !important;
     transform: translateY(-2px);
 }
 
-/* 5. HEADER & UI TWEAKS */
-header {
-	border-bottom: 1px solid var(--sl-color-gray-5) !important;
-	backdrop-filter: blur(12px);
-    background-color: rgba(11, 14, 20, 0.8) !important; /* Semi-transparent wie auf der Hauptseite */
-}
-
+/* 6. SONSTIGE TWEAKS */
 pre {
 	border-radius: 12px !important;
 	border: 1px solid var(--sl-color-gray-5) !important;
     background-color: #0d1117 !important;
+}
+
+/* Mobil-Optimierung für Buttons */
+@media (max-width: 50rem) {
+    .sl-link-button {
+        min-width: 100%;
+    }
 }
