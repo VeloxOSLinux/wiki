@@ -21,7 +21,8 @@ Nutze den Standard-Befehl, um alle Repositories zu synchronisieren:
 ```bash
 sudo pacman -Syu
 ```
-:::tip[Hinweis] Sollten Konflikte zwischen Manjaro- und CachyOS-Paketen auftreten, bevorzugt das System automatisch die Manjaro-Variante, es sei denn, ein Paket ist in Manjaro nicht vorhanden. :::
+:::tip[Hinweis] 
+Sollten Konflikte zwischen Manjaro- und CachyOS-Paketen auftreten, bevorzugt das System automatisch die Manjaro-Variante, es sei denn, ein Paket ist in Manjaro nicht vorhanden. :::
 
 ## ⚡ CachyOS-Pakete gezielt installieren
 Wenn du weißt, dass ein Paket im CachyOS-Repo speziell für deine CPU-Architektur (x86-64-v3/v4) optimiert ist, kannst du es gezielt von dort installieren.
@@ -53,6 +54,7 @@ Falls du lieber mit der Maus arbeitest, kannst du Pamac ("Software hinzufügen/e
 2. In den Einstellungen sind die Repositories bereits korrekt hinterlegt.
 3. CachyOS-Pakete werden in der Suche oft durch ihre Versionsnummer oder spezifische Beschreibung erkannt.
 
-:::caution[Wichtig] Mische niemals Repositories von anderen Distributionen (wie direktes Arch-Repo) manuell hinein, da dies die Manjaro-Basis beschädigen kann. Bleibe bei der von VeloxOS bereitgestellten Konfiguration. :::
+:::caution[Wichtig] 
+Mische niemals Repositories von anderen Distributionen (wie direktes Arch-Repo) manuell hinein, da dies die Manjaro-Basis beschädigen kann. Bleibe bei der von VeloxOS bereitgestellten Konfiguration. :::
 
 
