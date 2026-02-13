@@ -6,8 +6,9 @@ description: VeloxOS ist in Arbeit. Unten aufgeführt sind die primären Meilens
 VeloxOS ist in Arbeit. Unten aufgeführt sind die primären Meilensteine, auf die wir uns derzeit konzentrieren. Du kannst unseren Fortschritt hier verfolgen:
 
 ### 🎨 Phase 1: Die Identität (Frühjahr 2026)
+- [x] Benutzerdefiniertes Grub
 - [ ] Benutzerdefinierter Calamares-Installer & Branding
-- [ ] VeloxOS GNOME Desktop-Umgebung (Benutzerdefiniertes Layout & Erweiterungen)
+- [x] VeloxOS GNOME Desktop-Umgebung
 - [ ] Meilenstein: Erste öffentliche Technical Preview (ISO)
 
 ### 🛠 Phase 2: Die Optimierung (Sommer 2026)
