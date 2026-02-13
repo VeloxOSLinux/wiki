@@ -6,8 +6,9 @@ description: VeloxOS is a work in progress. Below are the primary milestones we 
 VeloxOS is a work in progress. Below are the primary milestones we are currently focusing on. You can track our progress here:
 
 ### 🎨 Phase 1: The Identity (Spring 2026)
+- [x] Custom Grub Theme
 - [ ] Custom Calamares Installer & Branding
-- [ ] VeloxOS GNOME Desktop Environment (Custom Layout & Extensions)
+- [x] VeloxOS COSMIC Desktop Environment
 - [ ] Milestone: First Public Technical Preview (ISO)
 
 ### 🛠 Phase 2: The Optimization (Summer 2026)
