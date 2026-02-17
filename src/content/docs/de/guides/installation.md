@@ -14,9 +14,12 @@ Nach dem Start vom USB-Stick erscheint das **GRUB-Bootmenü**. Hier kannst du wi
 * **tz (Zeitzone):** Wähle deine lokale Zeitregion.
 * **keytable:** Wähle dein Tastaturlayout.
 * **lang:** Wähle die Systemsprache.
-* **driver:** Wähle zwischen **free** (Open-Source) oder **nonfree** (Proprietär, empfohlen für NVIDIA-Nutzer).
 
-Wähle danach **"Boot with ..."** und drücke Enter.
+Wähle danach **"Boot ..."** und drücke Enter.
+
+:::tip[Note]
+Wenn der Autologin nicht klappt, verwende veloxoslive als Kennwort.
+:::
 
 ## 2. Der Installer
 
