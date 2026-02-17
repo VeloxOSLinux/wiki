@@ -14,9 +14,12 @@ When you boot from the USB drive, you will be greeted by the **GRUB boot menu** 
 * **tz (Timezone):** Set your local time.
 * **keytable:** Choose your keyboard layout.
 * **lang:** Set the system language.
-* **driver:** Choose between **free** (open-source) or **nonfree** (proprietary, recommended for NVIDIA users) drivers.
 
-Select **"Boot with ..."** and press Enter.
+Select **"Boot ..."** and press Enter.
+
+:::tip[Note]
+If the autologin doesn't work, user veloxoslive as the password.
+:::
 
 ## 2. Using the Installer
 
