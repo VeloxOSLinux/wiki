@@ -18,7 +18,7 @@ When you boot from the USB drive, you will be greeted by the **GRUB boot menu** 
 Select **"Boot ..."** and press Enter.
 
 :::tip[Note]
-If the autologin doesn't work, user veloxoslive as the password.
+If the autologin doesn't work, use veloxoslive as the password.
 :::
 
 ## 2. Using the Installer
