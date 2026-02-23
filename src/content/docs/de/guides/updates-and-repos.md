@@ -1,62 +1,92 @@
 ---
-title: Updates & Repository Management
-description: So hältst du VeloxOS aktuell und nutzt die CachyOS-Optimierungen richtig.
+title: Updates & Repository-Verwaltung
+description: So hältst du VeloxOS aktuell und nutzt das offizielle VeloxOS-Repository.
 ---
 
-VeloxOS nutzt eine Hybrid-Struktur. Damit dein System stabil bleibt, aber dennoch von der Geschwindigkeit von CachyOS profitiert, ist die Reihenfolge der Repositories entscheidend.
+VeloxOS nutzt eine zentrale Repository-Struktur. Um maximale Stabilität bei gleichzeitiger Höchstleistung zu garantieren, kuratieren und testen wir alle Pakete – von System-Kernkomponenten bis hin zu Performance-Optimierungen – bevor sie auf dein System gelangen.
 
-## 📦 Die Repository-Logik
+## 📦 Die Repository-Strategie
 
-In VeloxOS ist die `pacman.conf` so konfiguriert, dass **Manjaro-Repositories Priorität** haben. Das sorgt dafür, dass System-Kernkomponenten (wie `glibc` oder `gcc`) die getestete Stabilität von Manjaro behalten.
+Im Gegensatz zu Standard-Distributionen bietet VeloxOS eine **einzige, verifizierte Quelle**. Dieser Ansatz verhindert Versionskonflikte und stellt sicher, dass jedes Update für das VeloxOS-Ökosystem geprüft wurde. Unser Repository vereint:
 
-Die **CachyOS-Repositories** dienen als "Performance-Boost" für spezifische Anwendungen und optimierte Kernel.
+1.  **VeloxOS Core:** Eigene Fixes, Themes und OS-spezifische Konfigurationen.
+2.  **Geprüfte Basis:** Stabile Systemkomponenten auf Basis von Manjaro.
+3.  **Performance:** CPU-optimierte Anwendungen und Kernel (x86-64-v3/v4) von CachyOS.
+
+---
+
+## 🔐 Sicherheit & Verifizierung
+
+Alle Pakete im VeloxOS-Repository sind digital signiert, um deine Sicherheit zu gewährleisten.
+
+### GPG-Schlüsselverwaltung
+Der offizielle VeloxOS-Signaturschlüssel ist auf allen Systemen **vorinstalliert**. Bei einer Neuinstallation ist kein manuelles Eingreifen erforderlich.
+
+:::tip[Manueller Schlüssel-Import]
+Falls du von einer älteren Version migrierst oder deine Schlüssel wiederherstellen musst, nutze folgende Befehle:
+```bash
+# Schlüssel herunterladen und zu pacman hinzufügen
+curl https://downloads.veloxos.org/repos/key/veloxos.gpg | sudo pacman-key -a -
+
+# Schlüssel lokal signieren, um ihm zu vertrauen
+sudo pacman-key --lsign-key DE75DA0BF7DFECA3A588D82DF5DA023C16E45341
+```
+:::
+
+### Repository-Konfiguration
+Das Repository ist standardmäßig vorkonfiguriert. Zur manuellen Überprüfung stelle sicher, dass deine /etc/pacman.conf den folgenden Eintrag am Anfang der Repository-Sektion enthält:
+```bash
+[veloxos]
+SigLevel = Required DatabaseOptional
+Server = https://downloads.veloxos.org/repos/stable/$arch
+```
+(Hinweis: $arch wird je nach CPU-Unterstützung automatisch zu v3 oder v4 aufgelöst.)
 
 ## 🔄 Das System aktualisieren
+Updates werden nach erfolgreichen Tests in Zyklen veröffentlicht. Wir empfehlen die Nutzung des Terminals für maximale Transparenz während des Update-Vorgangs.
 
-Um VeloxOS zu aktualisieren, empfehlen wir den Standard-Weg über das Terminal oder die grafische Paketverwaltung (Pamac).
-
-### Per Terminal (Empfohlen)
-Nutze den Standard-Befehl, um alle Repositories zu synchronisieren:
-
+Per Terminal (Empfohlen)
+Nutze den Standard-Befehl, um dein System mit dem VeloxOS-Repository zu synchronisieren:
 ```bash
 sudo pacman -Syu
 ```
-:::tip[Hinweis] 
-Sollten Konflikte zwischen Manjaro- und CachyOS-Paketen auftreten, bevorzugt das System automatisch die Manjaro-Variante, es sei denn, ein Paket ist in Manjaro nicht vorhanden. 
+### Grafische Paketverwaltung (Pamac)
+Wenn du lieber "Software hinzufügen/entfernen" (Pamac) nutzt:
+
+Einheitliche Updates: Alle Updates werden über das veloxos Repository bereitgestellt.
+
+Automatische Prüfung: Signaturen werden vor jeder Installation automatisch verifiziert.
+
+## 🔄 Das System aktualisieren
+Updates werden nach erfolgreichen Tests in Zyklen veröffentlicht. Wir empfehlen die Nutzung des Terminals für maximale Transparenz während des Update-Vorgangs.
+
+Per Terminal (Empfohlen)
+Nutze den Standard-Befehl, um dein System mit dem VeloxOS-Repository zu synchronisieren:
+```bash
+sudo pacman -Syu
+```
+### Grafische Paketverwaltung (Pamac)
+Wenn du lieber "Software hinzufügen/entfernen" (Pamac) nutzt:
+
+Einheitliche Updates: Alle Updates werden über das veloxos Repository bereitgestellt.
+
+Automatische Prüfung: Signaturen werden vor jeder Installation automatisch verifiziert.
+
+## ⚡ Optimierte Pakete & Kernel
+Da VeloxOS die optimierten CachyOS-Builds direkt in das eigene Repository integriert, erhältst du die beste Performance ohne zusätzliche Quellen.
+
+Suche nach optimierten Paketen
+Du kannst prüfen, welche optimierten Pakete aktuell im Repo verfügbar sind:
+```bash
+pacman -Sl veloxos | grep [Suchbegriff]
+```
+## Der CachyOS Kernel 🐧
+VeloxOS wird mit einem vorinstallierten CachyOS-Kernel ausgeliefert, der für geringe Latenzen und Gaming optimiert ist.
+
+Automatische Updates: Der Kernel wird nahtlos über pacman -Syu aktualisiert.
+
+Kernel-Varianten: Du kannst weitere Varianten (z. B. linux-cachyos-bore) direkt aus dem VeloxOS-Repo installieren.
+
+:::caution[Wichtig]
+Füge niemals manuell offizielle Arch Linux- oder Manjaro-Mirror zu deiner pacman.conf hinzu. Dies würde den Testzyklus von VeloxOS umgehen und kann durch "Partial Upgrades" zu schweren Systeminstabilitäten führen. Verlasse dich auf das kuratierte VeloxOS-Repository für ein stabiles Erlebnis.
 :::
-
-## ⚡ CachyOS-Pakete gezielt installieren
-Wenn du weißt, dass ein Paket im CachyOS-Repo speziell für deine CPU-Architektur (x86-64-v3/v4) optimiert ist, kannst du es gezielt von dort installieren.
-
-Weg 1: Explizite Installation
-Du kannst dem Paketnamen den Namen des Repositories voranstellen:
-
-```bash
-# Beispiel: VLC aus dem CachyOS Repo installieren
-sudo pacman -S cachyos/vlc
-```
-Weg 2: Suche nach optimierten Paketen
-Du kannst prüfen, welche Pakete CachyOS anbietet:
-```bash
-pacman -Sl cachyos | grep [Suchbegriff]
-```
-
-## 🐧 Der CachyOS Kernel
-Einer der Hauptvorteile von VeloxOS ist der vorinstallierte CachyOS-Kernel. Dieser ist für geringe Latenz und hohe Performance optimiert.
-* Updates: Der Kernel wird automatisch über pacman -Syu aktualisiert.
-* Zusätzliche Kernel: Du kannst weitere Kernel-Varianten (z.B. linux-cachyos-bore) einfach nachinstallieren:
-```bash
-sudo pacman -S linux-cachyos-bore linux-cachyos-bore-headers
-```
-
-## 🛠 Grafische Paketverwaltung (Pamac)
-Falls du lieber mit der Maus arbeitest, kannst du Pamac ("Software hinzufügen/entfernen") nutzen.
-1. Öffne Pamac.
-2. In den Einstellungen sind die Repositories bereits korrekt hinterlegt.
-3. CachyOS-Pakete werden in der Suche oft durch ihre Versionsnummer oder spezifische Beschreibung erkannt.
-
-:::caution[Wichtig] 
-Mische niemals Repositories von anderen Distributionen (wie direktes Arch-Repo) manuell hinein, da dies die Manjaro-Basis beschädigen kann. Bleibe bei der von VeloxOS bereitgestellten Konfiguration. 
-:::
-
-
