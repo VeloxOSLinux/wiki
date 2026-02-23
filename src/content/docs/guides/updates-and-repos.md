@@ -24,7 +24,7 @@ Run these commands to trust the VeloxOS repository:
 
 ```bash
 # Download and add the key to pacman
-curl [https://downloads.veloxos.org/repos/key/veloxos.gpg](https://downloads.veloxos.org/repos/key/veloxos.gpg) | sudo pacman-key -a -
+curl https://downloads.veloxos.org/repos/key/veloxos.gpg | sudo pacman-key -a -
 
 # Locally sign the key to trust it
 sudo pacman-key --lsign-key DE75DA0BF7DFECA3A588D82DF5DA023C16E45341
@@ -34,7 +34,7 @@ The repository is typically pre-configured. If you need to add it manually, ensu
 ```bash
 [veloxos]
 SigLevel = Required DatabaseOptional
-Server = [https://downloads.veloxos.org/repos/stable/$arch](https://downloads.veloxos.org/repos/stable/$arch)
+Server = https://downloads.veloxos.org/repos/stable/$arch
 ```
 (Note: $arch will automatically resolve to v3 or v4 depending on your CPU support.)
 
@@ -47,10 +47,10 @@ Use the standard command to synchronize all repositories:
 sudo pacman -Syu
 ```
 :::tip[Note]
-If conflicts arise, the system will automatically prefer the VeloxOS or Manjaro variant over CachyOS to ensure maximum system compatibility.
-:::
+If conflicts arise, the system will automatically prefer the VeloxOS or Manjaro variant over CachyOS to ensure maximum system compatibility.:::
 
 ##⚡ Installing Optimized Packages
+
 If you know that a package in the CachyOS or VeloxOS repo is specially optimized for your CPU architecture (x86-64-v3/v4), you can install it specifically.
 
 Method 1: Explicit Installation
@@ -80,5 +80,4 @@ Signed packages from VeloxOS will be verified automatically.
 Use the search to find optimized software versions.
 
 :::caution[Important]
-Never manually mix in repositories from other distributions (like direct Arch repos), as this can break the Manjaro base. Stick to the configuration provided by VeloxOS.
-:::
+Never manually mix in repositories from other distributions (like direct Arch repos), as this can break the Manjaro base. Stick to the configuration provided by VeloxOS.:::
