@@ -21,4 +21,3 @@ VeloxOS is a work in progress. Below are the primary milestones we are currently
 - [ ] Automated zRAM & Performance Tuning: Out-of-the-box system snappiness.
 - [ ] Advanced Update-Governance: Finalizing the automated staging scripts.
 - [ ] Milestone: First Stable Release Candidate
-- `Note: This phase will be evaluated based on community feedback and project growth.`
