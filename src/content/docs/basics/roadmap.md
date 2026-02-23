@@ -11,7 +11,7 @@ VeloxOS is a work in progress. Below are the primary milestones we are currently
 - [x] Internal Mirror & Staging System: Dedicated Testing-to-Stable pipeline for maximum reliability.
 - [x] CachyOS Repo Integration: Automated sync for optimized x86_64-v3/v4 packages.
 
-### Phase 2: The Identity (Spring 2026)
+### 🎨 Phase 2: The Identity (Spring 2026)
 - [x] Custom Grub Theme: Brand new boot experience.
 - [ ] VeloxOS Desktop Environment: First layout implementations.
 - [ ] Custom Calamares Installer & Branding: Tailored installation process.
