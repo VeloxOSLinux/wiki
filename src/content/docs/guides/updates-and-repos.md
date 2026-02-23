@@ -57,8 +57,7 @@ Unified Updates: All updates are served via the veloxos repository.
 
 Automatic Verification: Signatures are verified automatically before any installation.
 
-##⚡ Optimized Packages & Kernels
-
+## ⚡ Optimized Packages & Kernels
 Since VeloxOS merges optimized CachyOS builds into its own repository, you get the best performance out of the box.
 
 Performance Search
