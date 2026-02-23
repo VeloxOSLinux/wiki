@@ -38,7 +38,7 @@ The repository is pre-configured. For manual verification, ensure your /etc/pacm
 ```bash
 [veloxos]
 SigLevel = Required DatabaseOptional
-Server = [https://downloads.veloxos.org/repos/stable/$arch](https://downloads.veloxos.org/repos/stable/$arch)
+Server = https://downloads.veloxos.org/repos/stable/$arch
 ```
 (Note: $arch automatically resolves to v3 or v4 depending on your CPU support.)
 
