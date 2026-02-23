@@ -47,7 +47,8 @@ Use the standard command to synchronize all repositories:
 sudo pacman -Syu
 ```
 :::tip[Note]
-If conflicts arise, the system will automatically prefer the VeloxOS or Manjaro variant over CachyOS to ensure maximum system compatibility.:::
+If conflicts arise, the system will automatically prefer the VeloxOS or Manjaro variant over CachyOS to ensure maximum system compatibility.
+:::
 
 ##⚡ Installing Optimized Packages
 
@@ -80,4 +81,5 @@ Signed packages from VeloxOS will be verified automatically.
 Use the search to find optimized software versions.
 
 :::caution[Important]
-Never manually mix in repositories from other distributions (like direct Arch repos), as this can break the Manjaro base. Stick to the configuration provided by VeloxOS.:::
+Never manually mix in repositories from other distributions (like direct Arch repos), as this can break the Manjaro base. Stick to the configuration provided by VeloxOS.
+:::
