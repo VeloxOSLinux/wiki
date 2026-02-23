@@ -1,27 +1,29 @@
 ---
 title: Updates & Repository Management
-description: How to keep VeloxOS up to date and use the official VeloxOS repository.
+description: How to keep VeloxOS up to date using the unified VeloxOS repository.
 ---
 
-VeloxOS utilizes a hybrid structure. To ensure your system remains stable while still benefiting from the speed of CachyOS and our own optimized builds, the order of the repositories is crucial.
+VeloxOS utilizes a unified repository structure. To ensure maximum stability and performance, we curate and test all packages—including core system components and specialized optimizations—before they are released to your system.
 
-## 📦 Repository Logic
+## 📦 Repository Strategy
 
-In VeloxOS, the `pacman.conf` is configured so that **VeloxOS and Manjaro repositories have priority**. This ensures that core system components maintain the tested stability of Manjaro, while VeloxOS-specific fixes and optimizations are applied first.
+Unlike standard distributions, VeloxOS provides a **single, verified source**. This approach prevents version conflicts and ensures that every update has been verified for the VeloxOS ecosystem. Our repository combines:
 
-1. **VeloxOS:** Custom packages, fixes, and curated optimizations.
-2. **Manjaro:** The stable system base.
-3. **CachyOS:** Performance boost for specific apps and kernels.
+1.  **VeloxOS Core:** Custom fixes, themes, and OS-specific configurations.
+2.  **Tested Base:** Stable system components derived from Manjaro.
+3.  **Performance:** CPU-optimized applications and kernels (x86-64-v3/v4) from CachyOS.
 
 ---
 
-## 🔐 The VeloxOS Repository
+## 🔐 Security & Verification
 
-We maintain our own signed repository to provide you with optimized packages and seamless updates. To use it securely, you must import our official GPG signing key.
+All packages in the VeloxOS repository are digitally signed for your security.
 
-### 1. Install the Signing Key
-Run these commands to trust the VeloxOS repository:
+### GPG Key Management
+The official VeloxOS signing key is **pre-installed** on all systems. No manual action is required for a fresh installation.
 
+:::tip[Manual Key Import]
+If you are migrating from an older version of VeloxOS or need to restore your keys, run:
 ```bash
 # Download and add the key to pacman
 curl https://downloads.veloxos.org/repos/key/veloxos.gpg | sudo pacman-key -a -
@@ -29,57 +31,47 @@ curl https://downloads.veloxos.org/repos/key/veloxos.gpg | sudo pacman-key -a -
 # Locally sign the key to trust it
 sudo pacman-key --lsign-key DE75DA0BF7DFECA3A588D82DF5DA023C16E45341
 ```
-### 2. Repository Configuration
-The repository is typically pre-configured. If you need to add it manually, ensure it is placed at the top of your /etc/pacman.conf:
+:::
+
+### Repository Configuration
+The repository is pre-configured. For manual verification, ensure your /etc/pacman.conf contains the following entry at the top of the repositories section:
 ```bash
 [veloxos]
 SigLevel = Required DatabaseOptional
-Server = https://downloads.veloxos.org/repos/stable/$arch
+Server = [https://downloads.veloxos.org/repos/stable/$arch](https://downloads.veloxos.org/repos/stable/$arch)
 ```
-(Note: $arch will automatically resolve to v3 or v4 depending on your CPU support.)
+(Note: $arch automatically resolves to v3 or v4 depending on your CPU support.)
 
 ## 🔄 Updating the System
-To update VeloxOS, we recommend the standard method via the terminal or the graphical package manager (Pamac).
+Updates are released in cycles after successful testing. We recommend using the terminal for the best transparency during the update process.
 
 Via Terminal (Recommended)
-Use the standard command to synchronize all repositories:
+Use the standard command to synchronize your system with the VeloxOS repository:
 ```bash
 sudo pacman -Syu
 ```
-:::tip[Note]
-If conflicts arise, the system will automatically prefer the VeloxOS or Manjaro variant over CachyOS to ensure maximum system compatibility.
-:::
+### Graphical Management (Pamac)
+If you prefer using "Add/Remove Software" (Pamac):
 
-##⚡ Installing Optimized Packages
+Unified Updates: All updates are served via the veloxos repository.
 
-If you know that a package in the CachyOS or VeloxOS repo is specially optimized for your CPU architecture (x86-64-v3/v4), you can install it specifically.
+Automatic Verification: Signatures are verified automatically before any installation.
 
-Method 1: Explicit Installation
-```bash
-# Example: Install VLC from the VeloxOS repo
-sudo pacman -S veloxos/vlc
-```
-Method 2: Searching for Optimized Packages
+##⚡ Optimized Packages & Kernels
+Since VeloxOS merges optimized CachyOS builds into its own repository, you get the best performance out of the box.
+
+Performance Search
+You can check which optimized packages are currently available in the repo:
 ```bash
 pacman -Sl veloxos | grep [search_term]
 ```
+## The CachyOS Kernel 🐧
+VeloxOS comes with a pre-installed CachyOS kernel, optimized for low latency and gaming.
 
-##🐧 The CachyOS Kernel
-One of the main advantages of VeloxOS is the pre-installed CachyOS kernel.
+Automatic Updates: The kernel is updated seamlessly via pacman -Syu.
 
-Updates: The kernel is automatically updated via pacman -Syu.
-
-Variants: You can install other variants like linux-cachyos-bore via pacman.
-
-## 🛠 Graphical Package Management (Pamac)
-If you prefer using a GUI, open "Add/Remove Software":
-
-The repositories are already correctly configured.
-
-Signed packages from VeloxOS will be verified automatically.
-
-Use the search to find optimized software versions.
+Variants: You can install additional variants (e.g., linux-cachyos-bore) directly from the VeloxOS repo.
 
 :::caution[Important]
-Never manually mix in repositories from other distributions (like direct Arch repos), as this can break the Manjaro base. Stick to the configuration provided by VeloxOS.
+Never manually add official Arch Linux or Manjaro mirrors to your pacman.conf. This would bypass the VeloxOS testing cycle and will lead to severe system instability due to "Partial Upgrades". Stick to the curated VeloxOS repository for a stable experience.
 :::
