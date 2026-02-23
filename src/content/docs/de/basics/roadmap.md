@@ -18,6 +18,4 @@ VeloxOS ist in Arbeit. Unten aufgeführt sind die primären Meilensteine, auf di
 
 ### 🛠 Phase 3: Die Optimierung (Sommer 2026)
 - [ ] Automatisierte zRAM- & Performance-Optimierung
-- [ ] Vollständige CachyOS Repo- & PGP-Schlüssel-Integration (automatisiert)
 - [ ] Meilenstein: Erster stabiler Release Candidate
-- `Hinweis: Diese Phase wird basierend auf dem Feedback der Community und dem Projektwachstum bewertet.`
