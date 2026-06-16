@@ -5,7 +5,7 @@ description: Learn how to build your own custom VeloxOS Live ISO from our declar
 
 Because VeloxOS is built on NixOS, building a custom Live ISO from source no longer requires complex host mirroring, chroots, or distribution-specific build tools. Using the power of **Nix Flakes**, you can compile and generate a fully functional VeloxOS installation media with a single command from any system running the Nix package manager.
 
-:::info[System Requirements]
+:::caution[System Requirements]
 - **Storage:** ~20 GB free disk space (mostly for caching packages).
 - **Host OS:** Any Linux distribution with **Nix** installed and Flakes enabled.
 :::
