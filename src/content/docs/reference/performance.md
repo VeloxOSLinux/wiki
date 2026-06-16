@@ -1,34 +1,46 @@
 ---
-title: Performance & Kernel
-description: Understanding the CachyOS Kernel and x86-64-v3 optimizations in VeloxOS.
+title: Performance & Tuning
+description: Understanding the Linux Zen Kernel, automated zRAM, and custom system tweaks in VeloxOS.
 sidebar:
-  order: 1
+  order: 2
 ---
 
-VeloxOS is built for speed. We achieve this by using cutting-edge kernel technology and modern instruction sets.
+VeloxOS is engineered for desktop responsiveness and out-of-the-box gaming performance. Instead of relying on complex hardware-specific repositories, we achieve maximum speed through a hand-picked performance kernel, automated memory tuning, and declarative system-level tweaks.
 
-## The CachyOS Kernel
+---
 
-At the core of VeloxOS is the **CachyOS Kernel**, a heavily tuned version of the Linux kernel designed for desktop responsiveness and gaming performance.
+## 🐧 The Linux Zen Kernel
 
-### Key Features:
-* **Bore Scheduler:** The *Burst-Oriented Response Encoder* (BORE) is designed to reduce latencies and keep the desktop fluid, even under high CPU load.
-* **Custom Toolchain:** Compiled with optimized flags and the latest LLVM/Clang or GCC.
-* **Performance Patches:** Includes upstreamed and experimental patches for improved filesystem speed and memory management.
+At the core of VeloxOS is the **Linux Zen Kernel**, a collaborative effort of kernel hackers to provide the best possible Linux kernel for everyday desktop usage, multimedia, and gaming.
 
-## x86-64-v3 & v4 Optimizations
+### Key Performance Benefits:
+* **Low-Latency Scheduling:** Tuned for high responsiveness, ensuring your desktop and inputs stay buttery smooth even under heavy CPU or background render loads.
+* **Optimized BBR Congestion Control:** Pre-configured network scheduling to improve download stability and reduce latency in online multiplayer games.
+* **Preemption Model:** Uses a fine-tuned preemptive model (`PREEMPT`) designed specifically to minimize micro-stutters (1% lows) in gaming workloads.
 
-Standard Linux distributions are usually compiled for **x86-64 (v1)**, which ensures compatibility with CPUs from 20 years ago. VeloxOS targets modern hardware.
+---
 
-| Level | Requirement (approx.) | Performance Benefit |
-| :--- | :--- | :--- |
-| **v1** | Anything 64-bit (Generic) | Baseline |
-| **v3** | Intel Haswell (2013+) / AMD Ryzen | **10-15% uplift** in complex tasks |
-| **v4** | Intel AVX-512 (Xeon/High-end) | Maximum throughput for data & AVX tasks |
+## 🧠 Automated zRAM Configuration
 
-### Why it matters:
-By using **AVX, AVX2, and BMI2** instructions natively, the CPU can process more data per clock cycle. This results in faster app launches, smoother video encoding, and higher 1% lows in gaming.
+Traditional swap partitions on physical drives are slow and can cause massive system stutters when your RAM fills up. VeloxOS completely bypasses this by implementing automated **zRAM** out-of-the-box.
 
-:::note
-VeloxOS automatically detects your hardware and utilizes the best possible instruction set available for your CPU.
+### How it works:
+Instead of writing temporary data to your SSD or HDD, VeloxOS creates a compressed block device directly inside your RAM. 
+
+* **High Compression Ratio:** Data moved to swap is compressed on-the-fly using ultra-fast algorithms (like `zstd`).
+* **Zero Disk Bottlenecks:** Because everything happens at RAM speeds, your system remains perfectly responsive even when multi-tasking heavily or running memory-intensive games.
+* **SSD Longevity:** By avoiding constant write cycles to a physical drive, zRAM extends the lifespan of your storage hardware.
+
+---
+
+## 🛠 Custom Built-in Kernel Tweaks
+
+We have analyzed popular performance distributions and integrated their best system-level optimizations directly into the VeloxOS configuration. These are applied automatically at boot via our central Nix modules:
+
+* **Optimized `sysctl` Parameters:** Fine-tuned memory management (`vm.max_map_count` is set high by default to ensure perfect compatibility with heavy Steam/Proton titles like *Star Citizen* or *Cyberpunk 2077*).
+* **Improved File Descriptor Limits:** Increased system resources for wine/proton prefixes, preventing random game crashes during long sessions.
+* **Split Lock Mitigations:** Disabled by default to prevent sudden performance drops and stuttering in specific modern gaming engines.
+
+:::tip[Declarative Tuning]
+Want to add your own custom kernel parameters or tweak a specific sysctl value? Since VeloxOS is declarative, you don't hunt down obscure configuration files. Simply append them to your `modules/performance.nix` file and rebuild your system!
 :::
