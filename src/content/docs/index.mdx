@@ -4,8 +4,6 @@ description: The VeloxOS knowledge base – documentation for a performance-focu
 template: splash
 hero:
   tagline: The declarative, performance-tuned gaming operating system.
-  image:
-    file: ../../assets/logo.png
   actions:
     - text: Getting Started
       link: /basics/navigation-guide
@@ -20,6 +18,13 @@ hero:
       icon: external
       variant: secondary
 ---
+
+<img 
+  src="/assets/logo.png" 
+  alt="VeloxOS Logo" 
+  style="position: absolute; right: 5%; top: 15%; max-width: 400px; width: 100%; height: auto; z-index: -1;" 
+  class="hero-logo-custom"
+/>
 
 > 🚧 **Wiki in Progress**  
 > The VeloxOS Wiki is actively evolving alongside the distribution itself.  
@@ -40,7 +45,7 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 	<Card title="Gaming Ready" icon="discord">
 		Pre-configured for Steam, Faugus-Launcher, and Proton performance with optimized compositor settings.
 	</Card>
-	<Card title="100% Declarative" icon="history">
+	<Card title="100% Declarative" icon="shield">
 		No more broken updates. Your entire OS state is defined in code. Rollback instantly if something goes wrong, keeping your setup clean and pristine.
 	</Card>
 </CardGrid>
