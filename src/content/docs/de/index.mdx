@@ -1,17 +1,17 @@
 ---
 title: Willkommen im VeloxOS Wiki
-description: Die Wissensdatenbank zu VeloxOS – einer performance-orientierten, snapshot-basierten Linux-Distribution.
+description: Die Wissensdatenbank zu VeloxOS – einer performance-orientierten, deklarativen und reproduzierbaren Linux-Distribution.
 template: splash
 hero:
-  tagline: Performance-optimiertes Linux für moderne Hardware.
+  tagline: Performance-optimiertes, deklaratives Linux auf NixOS-Basis.
   image:
     file: ../../../assets/logo.png
   actions:
-    - text: Getting Started
+    - text: Erste Schritte
       link: /basics/navigation-guide
       icon: right-arrow
       variant: primary
-    - text: Installation Guide
+    - text: Installations-Anleitung
       link: /guides/installation/
       icon: rocket
       variant: primary
@@ -31,16 +31,16 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 ## Warum VeloxOS?
 
 <CardGrid>
-	<Card title="Maximale Speed" icon="rocket">
-		Optimierter **CachyOS-Kernel** sowie x86-64-v3/v4-Pakete für moderne CPUs.
+	<Card title="Maximale Performance" icon="rocket">
+		Leistungsoptimierte Kernel und x86-64-v3/v4-Kompilierung für deine CPU.
 	</Card>
-	<Card title="Stabile Basis" icon="setting">
-		Die bewährte Stabilität von **Manjaro** als solides Fundament.
+	<Card title="Deklarativ & Unveränderlich" icon="setting">
+		Basiert auf **NixOS** – definiere dein gesamtes System im Code für 100 % Reproduzierbarkeit.
 	</Card>
 	<Card title="Gaming bereit" icon="discord">
-		Vorkonfiguriert für Steam, Heroic, Faugus-Launcher und optimierte Wine-/Proton-Performance.
+		Vorkonfiguriert für Steam, Heroic und Wine mit optimierten Compositor-Settings.
 	</Card>
-	<Card title="Open Source" icon="github">
-		Transparent entwickelt und gemeinschaftsorientiert.
+	<Card title="Sorgenfreie Updates" icon="shieldCheck">
+		Atomare System-Updates und sofortige Rollbacks über Boot-Generationen hinweg.
 	</Card>
 </CardGrid>
