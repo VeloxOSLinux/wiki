@@ -121,3 +121,10 @@ site-search button {
     .sl-link-button { min-width: 100%; }
     header { height: auto !important; }
 }
+
+/* Erhöht die maximale Breite des Hero-Bildes im Splash-Layout */
+.splash .hero img {
+  max-width: 450px !important;
+  width: 100%;
+  height: auto;
+}
