@@ -1,23 +1,33 @@
 ---
 title: Roadmap 2026/2027
-description: VeloxOS is a work in progress. Below are the primary milestones we are currently focusing on. You can track our progress here.
+description: VeloxOS development is evolving. We have pivoted our architectural core from standard snapshot models to a fully reproducible, declarative system based on NixOS and Flakes.
 ---
 
-VeloxOS is a work in progress. Below are the primary milestones we are currently focusing on. You can track our progress here:
+VeloxOS development is evolving. We have pivoted our architectural core from standard snapshot models to a fully reproducible, declarative system based on NixOS and Flakes. Below are the primary milestones we are currently focusing on.
 
-### 🚀 Phase 1: Infrastructure & Core (Winter 2025/2026)
-- [x] Independent VeloxOS Repositories: Hosting and curating our own packages.
-- [x] PGP Key & Signature Integration: Secure, signed repository updates.
-- [x] Internal Mirror & Staging System: Dedicated Testing-to-Stable pipeline for maximum reliability.
-- [x] CachyOS Repo Integration: Automated sync for optimized x86_64-v3/v4 packages.
+### 🚀 Phase 1: Legacy Core & Concept (Winter 2025/2026)
+* **Arch / Cachy Base Evaluation**
+- [x] Independent Repository Prototypes
+- [x] Performance Profiling & Kernel Synergy Assessments
+- [x] Initial Project Branding & Web Presence
 
-### 🎨 Phase 2: The Identity (Spring 2026)
-- [x] Custom Grub Theme: Brand new boot experience.
-- [ ] VeloxOS Desktop Environment: First layout implementations.
-- [ ] Custom Calamares Installer & Branding: Tailored installation process.
-- [ ] Milestone: First Public Technical Preview (ISO)
+> 📍 **Infrastructure baseline completed.** Core insights led to the modern declarative shift.
 
-### 🛠 Phase 3: The Optimization (Summer 2026)
-- [ ] Automated zRAM & Performance Tuning: Out-of-the-box system snappiness.
-- [ ] Advanced Update-Governance: Finalizing the automated staging scripts.
-- [ ] Milestone: First Stable Release Candidate
+---
+
+### 🎨 Phase 2: The Declarative Pivot (Spring / Summer 2026) — *In Progress*
+* **NixOS Core & Flakes Transition**
+- [x] Custom NixOS Base Profile & System Flakes Blueprint
+- [/] Niri Wayland Compositor Integration & Layout Design *(Active)*
+- [ ] Reproducible Velox-Prompt & Shell Environments via Home-Manager
+
+> 📍 **Milestone:** Internal Technical Preview & Configuration Specs
+
+---
+
+### 🛠 Phase 3: Gaming & Ecosystem Modules (Autumn / Winter 2026) — *Planned*
+* **Performance Tuning Out-of-the-Box**
+- [ ] Declarative Gaming Modules (Steam, ProtonUp-Qt, Custom Scopes)
+- [ ] Automated Memory Tuning, ZRAM Allocations & Low-Latency Kernel Toggles
+
+> 📍 **Milestone:** Public Release Candidate (GitHub Flake Launch)
