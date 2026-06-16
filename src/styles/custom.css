@@ -31,7 +31,7 @@ header {
 }
 
 .site-title img {
-    height: 48px !important;    /* Logo Größe */
+    height: 64px !important;    /* Logo Größe */
     width: auto !important;
     max-height: 40px !important; /* Begrenzung explizit setzen */
     max-width: none !important;
