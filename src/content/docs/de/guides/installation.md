@@ -1,35 +1,59 @@
 ---
 title: VeloxOS Installation
-description: Offizielle Schritt-für-Schritt Installationsanleitung.
+description: Offizielle Schritt-für-Schritt-Installationsanleitung für das deklarative, NixOS-basierte System.
 sidebar:
   order: 1
 ---
 
-Diese Anleitung beschreibt den Installationsprozess mit der VeloxOS Live-ISO.
+Da VeloxOS auf eine vollständig deklarative NixOS-Architektur umgestellt wurde, bieten wir zwei Wege für die Installation an: die unkomplizierte **Grafische ISO** (empfohlen für die meisten Nutzer) und die **Manuelle Flake-Bereitstellung** (für fortgeschrittene Anwender und Alpha-Tester).
 
-## 1. Booten der ISO
+---
 
-Nach dem Start vom USB-Stick erscheint das **GRUB-Bootmenü**. Hier kannst du wichtige Voreinstellungen treffen:
+## Methode A: Installation über die VeloxOS Live-ISO (Empfohlen)
 
-* **tz (Zeitzone):** Wähle deine lokale Zeitregion.
-* **keytable:** Wähle dein Tastaturlayout.
-* **lang:** Wähle die Systemsprache.
+Diese Methode nutzt das offizielle VeloxOS-Installationsmedium inklusive grafischer Oberfläche und einem maßgeschneiderten Installer.
 
-Wähle danach **"Boot ..."** und drücke Enter.
+### 1. Booten der ISO
+Wenn du vom USB-Stick startest, wirst du vom System-Bootmenü (**systemd-boot**) begrüßt.
 
-:::tip[Note]
-Wenn der Autologin nicht klappt, verwende veloxoslive als Kennwort.
+1. Wähle die VeloxOS Live-Umgebung aus und drücke Enter.
+2. Das System bootet in eine minimale grafische Sitzung und startet den Installer automatisch.
+
+:::tip[Hinweis]
+Falls die Live-Umgebung nach einem Passwort fragt oder der Autologin fehlschlägt, verwende `veloxos` als Zugangsdaten.
 :::
 
-## 2. Der Installer
+### 2. Der Installer
+Der grafische Installer führt dich Schritt für Schritt durch den Prozess:
 
-Sobald die Desktop-Oberfläche geladen ist, startet der **Calamares-Installer** automatisch.
+1. **Sprache & Region:** Bestätige deine lokalen Einstellungen und dein Tastaturlayout.
+2. **Partitionierung:** * Da VeloxOS eine automatisierte **zRAM-Konfiguration** für Hochleistungs-Arbeitsspeicherkomprimierung nutzt, ist eine physische Swap-Partition optional.
+   * Wähle **"Festplatte löschen"** und entscheide dich für **"Kein Swap"**, es sei denn, du benötigst explizit den Ruhezustand (Suspend-to-Disk / Hibernate).
+3. **Benutzer:** Erstelle dein Hauptbenutzerkonto und vergebe ein sicheres Passwort.
+4. **Zusammenfassung:** Überprüfe deine Einstellungen und klicke auf **Installieren**. Der Installer spielt nun die deklarative VeloxOS-Umgebung auf deine Festplatte.
 
-### Wichtige Schritte:
-1.  **Partitionierung:** * Da VeloxOS **zRAM** zur Hochleistungs-Komprimierung nutzt, ist eine physische Swap-Partition meist unnötig.
-    * Wähle **"Festplatte löschen"** und bei Swap die Option **"Kein Swap"**, es sei denn, du benötigst den Ruhezustand (Hibernate).
-2.  **Benutzer:** Erstelle dein Benutzerkonto.
+---
 
-:::tip[Hinweis zu zRAM]
-VeloxOS konfiguriert zRAM automatisch. Du musst nach der Installation nichts weiter tun, um von der verbesserten Performance zu profitieren.
-:::
+## Methode B: Manuelle Flake-Bereitstellung (Erweitert / Alpha)
+
+Wenn du das System lieber von einer minimalen Standard-NixOS-ISO aus installieren möchtest oder frühe Entwickler-Builds testest, kannst du VeloxOS direkt aus unserem GitHub-Repository bootstrappen.
+
+### 1. Festplatte vorbereiten
+Boote in eine beliebige NixOS-Live-ISO, richte deine Internetverbindung ein, partitioniere deine Festplatte und mounte die Partitionen nach `/mnt` (z. B. deine Root-Partition nach `/mnt` und deine EFI-Boot-Partition nach `/mnt/boot`).
+
+### 2. Hardware-Konfiguration generieren
+NixOS muss deine spezifische Hardware-Konfiguration erkennen, bevor es das System bauen kann:
+```bash
+nixos-generate-config --root /mnt
+```
+
+### 3. Installation via VeloxOS-Flake starten
+Führe den Installationsbefehl aus und verweise dabei direkt auf unseren System-Flake. Der Installer lädt die Konfiguration herunter, wendet unsere Kernel-Tweaks an und baut deine Niri-Umgebung out-of-the-box zusammen:
+```bash
+nixos-install --flake github:VeloxOSLinux/veloxos-config#default
+```
+
+## Nach der Installation
+Sobald der Installationsprozess (egal über welche Methode) erfolgreich abgeschlossen wurde, starte deinen Computer neu und entferne das Installationsmedium.
+
+Beim ersten Start wirst du von systemd-boot begrüßt, das dich direkt in dein frisches, performance-optimiertes VeloxOS führt. Deine System-Generationen sind ab jetzt absolut sicher und atomar geschützt!
