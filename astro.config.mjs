@@ -18,19 +18,29 @@ export default defineConfig({
 			lastUpdated: true,
 			logo: { src: './src/assets/logo.png' },
 			sidebar: [
-				{
-					label: 'Getting Started',
-					autogenerate: { directory: 'basics' },
-				},
-				{
-					label: 'Installation & Daily Use',
-					autogenerate: { directory: 'guides' },
-				},
-                {
-                    label: 'Development & Performance',
-                    autogenerate: { directory: 'reference' },
-				},
-			],
+  {
+    label: 'Getting Started',
+    items: [
+      { label: 'Wiki Navigation Guide', link: '/basics/navigation-guide/' },
+      { label: 'Roadmap 2026/2027', link: '/basics/roadmap/' },
+    ],
+  },
+  {
+    label: 'Installation & Daily Use',
+    items: [
+      { label: 'VeloxOS Installation', link: '/guides/installation/' },
+      { label: 'First Steps & Package Management', link: '/guides/first-steps/' },
+      { label: 'Updates & Configuration Management', link: '/guides/updates-repository/' },
+    ],
+  },
+  {
+    label: 'Development & Performance',
+    items: [
+      { label: 'Performance & Tuning', link: '/references/performance-kernel/' },
+      { label: 'Building VeloxOS from Source', link: '/guides/build/' },
+    ],
+  },
+],
 			editLink: {
 				baseUrl: 'https://github.com/VeloxOSLinux/wiki/',
 			},
