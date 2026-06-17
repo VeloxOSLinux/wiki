@@ -16,7 +16,7 @@ export default defineConfig({
 			},
 			favicon: '/favicon.svg',
 			lastUpdated: true,
-			logo: { src: './src/assets/logo.png' },
+			logo: { src: './src/assets/VeloxOS_Blank.png' },
 			sidebar: [
   {
     label: 'Getting Started',
