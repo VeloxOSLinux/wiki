@@ -23,11 +23,11 @@ export default defineConfig({
 					autogenerate: { directory: 'basics' },
 				},
 				{
-					label: 'Guides',
+					label: 'Installation & Daily Use',
 					autogenerate: { directory: 'guides' },
 				},
                 {
-                    label: 'References',
+                    label: 'Development & Performance',
                     autogenerate: { directory: 'reference' },
 				},
 			],
