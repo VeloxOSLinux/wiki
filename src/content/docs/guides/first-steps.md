@@ -1,33 +1,31 @@
 ---
-title: Erste Schritte & Paketverwaltung
-description: Der VeloxOS Spickzettel – Wie du Software installierst, deine Konfiguration strukturierst und das System sauber hältst.
-sidebar:
-  order: 3
+title: First Steps & Package Management
+description: The VeloxOS Cheat Sheet – How to install software, structure your configuration, and keep your system clean.
 ---
 
-Willkommen bei VeloxOS! Wenn du von einer traditionellen Distribution wie Arch Linux, Ubuntu oder Windows kommst, wird dir die Funktionsweise von VeloxOS zuerst etwas ungewohnt vorkommen. Keine Sorge – sobald du das Prinzip verstanden hast, möchtest du nichts anderes mehr.
+Welcome to VeloxOS! If you are coming from a traditional distribution like Arch Linux, Ubuntu, or Windows, the way VeloxOS operates will seem a bit unfamiliar at first. Don't worry – once you grasp the concept, you won't want to use anything else.
 
-Dieses Cheat-Sheet zeigt dir die wichtigsten Handgriffe, um dein System im Alltag zu verwalten.
+This cheat sheet shows you the most important steps to manage your system in daily use.
 
 ---
 
-## 🛠️ Wie installiere ich Software?
+## 🛠️ How Do I Install Software?
 
-Da VeloxOS ein deklaratives System ist, gibt es kein `sudo pacman -S` oder `apt install`. Das manuelle Installieren von Paketen in das laufende System hinein würde den Zustand verändern und das System unvorhersehbar machen. Stattdessen nutzen wir zwei saubere Methoden:
+Because VeloxOS is a declarative system, commands like `sudo pacman -S` or `apt install` do not exist. Manually installing packages into a running system would alter its state and make it unpredictable. Instead, we use two clean methods:
 
-### Methode 1: Software temporär ausprobieren (Empfohlen)
-Du möchtest ein Tool (z. B. einen Video-Downloader oder ein Benchmark-Werkzeug) nur einmalig benutzen? Mit `nix-shell` kannst du Anwendungen in einer isolierten Umgebung starten, ohne sie dauerhaft zu installieren:
+### Method 1: Testing Software Temporarily (Recommended)
+Do you want to use a tool (e.g., a video downloader or a benchmarking utility) just once? With `nix-shell`, you can launch applications in an isolated environment without installing them permanently:
 
 ```bash
 nix-shell -p yt-dlp
 ```
-Sobald du das Tool schließt oder `exit` in dem Terminal eingibst, ist die Anwendung rückstandslos wieder verschwunden. Dein System bleibt absolut sauber.
 
-### Methode 2: Software dauerhaft installieren (Der VeloxOS-Weg)
+As soon as you close the tool or type `exit` in that terminal, the application vanishes without a trace. Your system remains absolutely pristine.
 
-Dauerhafte Software wird als Code in deine Systemkonfiguration eingetragen. Um die zentrale `configuration.nix` übersichtlich zu halten, empfehlen wir, deine installierten Anwendungen in eine eigene, dedizierte Datei auszulagern (z. B. unter `/etc/nixos/custom/tools.nix`).
+### Method 2: Installing Software Permanently (The VeloxOS Way)
+Permanent software is declared as code within your system configuration. To keep the central `configuration.nix` neat and tidy, we highly recommend offloading your installed applications into their own dedicated file (e.g., under `/etc/nixos/custom/tools.nix`).
 
-1. Erstelle oder bearbeite deine Anwendungsliste (z. B. unter `~/veloxos-config/custom/tools.nix`):
+1. Create or edit your application list (e.g., inside `~/veloxos-config/custom/tools.nix`):
 ```bash
 { pkgs, ... }:
 
@@ -40,44 +38,42 @@ Dauerhafte Software wird als Code in deine Systemkonfiguration eingetragen. Um d
   ];
 }
 ```
-2. Importiere diese Datei in deiner Haupt-`configuration.nix`:
+2. Import this file into your main configuration.nix:
 ```bash
 imports = [
   ./hardware-configuration.nix
-  ./custom/tools.nix  # <--- Hier bindest du deine Softwareliste ein
+  ./custom/tools.nix  # <--- This is where you include your custom software list
 ];
 ```
-3. Wende die Änderungen an, um die Software systemweit verfügbar zu machen:
+3. Apply the changes to make the software available system-wide:
 ```bash
 sudo nixos-rebuild switch --flake .#default
 ```
 
-## 📂 Die VeloxOS Ordnerstruktur im Überblick
-Deine gesamte Systemkonfiguration liegt als Git-Repository in deinem Heimatverzeichnis. Hier ist eine Übersicht, wo du welche Einstellungen findest, wenn du dein System anpassen möchtest:
+## 📂 The VeloxOS Directory Structure at a Glance
+Your entire system configuration lives as a Git repository in your home directory. Here is an overview of where to find specific settings if you want to customize your system:
 ```bash
 ~/veloxos-config/
-├── flake.nix            # Die System-Zentrale (Kanäle & Versionen)
-├── configuration.nix    # Globale Systemeinstellungen (User, Netzwerk)
-├── hardware-configuration.nix # Automatisch generierte Hardware-Treiber
+├── flake.nix            # The system hub (defines channels & versions)
+├── configuration.nix    # Global system settings (users, networking)
+├── hardware-configuration.nix # Automatically generated hardware drivers
 └── modules/
-    ├── performance.nix  # Zen-Kernel, zRAM & sysctl-Gaming-Tweaks
-    └── desktop.nix      # Niri-Compositor & Display-Manager-Einstellungen
+    ├── performance.nix  # Zen kernel, zRAM & sysctl gaming tweaks
+    └── desktop.nix      # Niri compositor & display manager settings
 ```
 
-## 🧹 Automatische Müllabfuhr (Garbage Collection)
-Jedes Mal, wenn du Software installierst, entfernst oder dein System aktualisierst, erstellt VeloxOS eine neue System-Generation. Die alten Generationen verbleiben standardmäßig auf der Festplatte, damit du im Bootmenü jederzeit zu ihnen zurückspringen kannst.
+## 🧹 Automatic Garbage Collection
+Every time you install software, remove it, or update your system, VeloxOS creates a new system generation. By default, older generations remain on your drive so you can easily roll back to them via the boot menu at any time.
 
-### Du musst nichts tun!
-Damit deine SSD durch diese Generationen nicht unbemerkt vollreitet, ist in VeloxOS bereits eine automatische Müllabfuhr im Hintergrund voreingestellt. Das System bereinigt regelmäßig alte, nicht mehr benötigte Systemzustände vollautomatisch.
+### You don't have to do anything!
+To prevent these generations from silently filling up your SSD, VeloxOS comes with automatic garbage collection pre-configured in the background. The system periodically and fully automatically purges old, no longer required system states.
 
-### Manueller Frühjahrsputz (Optional)
-Solltest du nach intensiven Testwochen manuell Speicherplatz freigeben wollen, kannst du die Müllabfuhr auch jederzeit selbst im Terminal anstoßen:
-
+### Manual Spring Cleaning (Optional)
+If you ever want to free up storage space manually after an intensive week of testing, you can trigger the garbage collection yourself via the terminal at any time:
 ```bash
-# Löscht alte, nicht mehr registrierte Pakete
+# Deletes old, unregistered packages
 nix-collect-garbage -d
 ```
-
-:::caution[Hinweis zum Löschen]
-Der Parameter -d (delete old) löscht alle älteren System-Generationen. Nach diesem Befehl kannst du im Bootloader nicht mehr zu den Zuständen vor dem heutigen Tag zurückspringen!
+:::caution[Note on Deletion]
+The -d (delete old) flag wipes all older system generations. After executing this command, you will no longer be able to roll back to system states created prior to today using the bootloader!
 :::
