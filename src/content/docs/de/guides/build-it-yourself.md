@@ -1,78 +1,47 @@
 ---
 title: VeloxOS aus Quellcodes bauen
-description: Eine umfassende Anleitung, wie du deine eigene VeloxOS ISO mit unseren offiziellen Profilen und den CachyOS-Repositories erstellst.
+description: Eine umfassende Anleitung, wie du deine eigene, maßgeschneiderte VeloxOS Live-ISO aus unserer deklarativen Flake-Konfiguration erstellst.
 ---
 
-import { Steps } from '@astrojs/starlight/components';
-
-Diese Anleitung erklärt, wie du eine frische VeloxOS ISO generierst. Da VeloxOS die Performance von **CachyOS** auf einer Manjaro-Basis nutzt, muss dein Host-System entsprechend vorbereitet sein.
+Da VeloxOS auf NixOS basiert, erfordert das Erstellen einer eigenen Live-ISO keine komplexen Spiegelserver, Chroots oder distributionsspezifischen Build-Tools mehr. Dank der Mächtigkeit von **Nix Flakes** kannst du ein voll funktionsfähiges VeloxOS-Installationsmedium mit einem einzigen Befehl auf jedem Linux-System generieren, auf dem der Nix-Paketmanager installiert und Flakes aktiviert sind.
 
 :::caution[Systemanforderungen]
-- **Speicherplatz:** 20-30 GB freier Festplattenspeicher.
-- **Host-Betriebssystem:** Manjaro oder Arch-basiert.
-- **Repositories:** Die CachyOS-Repositories **müssen** auf dem Host-System aktiviert sein, um die optimierten Pakete und Kernel abzurufen.
+- **Speicherplatz:** ~20 GB freier Festplattenspeicher (hauptsächlich zum Zwischenspeichern/Cachen von Paketen).
+- **Host-Betriebssystem:** Jede Linux-Distribution mit installiertem **Nix** und aktivierten Flakes.
 :::
 
-## 📋 Schritt 1: Host-System vorbereiten
+## 🚀 Den Build-Prozess starten
 
-Bevor du mit dem Bauen beginnst, musst du die CachyOS-Repositories und die Build-Tools zu deinem System hinzufügen.
+Wir nutzen die nativen Werkzeuge von Nix, um die ISO-Datei direkt aus unserem Konfigurations-Blueprint zusammenzubauen.
 
-### 1. CachyOS Repositories hinzufügen
-Folge dem [offiziellen CachyOS Wiki](https://wiki.cachyos.org/configuration/general_settings/) oder nutze das Helper-Skript:
+### 1. Das Konfigurations-Repository klonen
+Hole dir als Erstes den offiziellen Konfigurationsbaum von VeloxOS auf deinen lokalen Rechner:
 
 ```bash
-wget [https://mirror.cachyos.org/cachyos-repo.tar.xz](https://mirror.cachyos.org/cachyos-repo.tar.xz)
-tar xvf cachyos-repo.tar.xz && cd cachyos-repo
-sudo ./cachyos-repo.sh
+git clone [https://github.com/VeloxOSLinux/veloxos-config.git](https://github.com/VeloxOSLinux/veloxos-config.git) ~/veloxos-config
+cd ~/veloxos-config
 ```
-### 2. Voraussetzungen
-Als Nächstes installierst du die offiziellen Build-Tools von Manjaro. Öffne dein Terminal und führe aus:
+### 2. Den Build-Befehl ausführen
+Um die ISO-Generierung anzustoßen, führst du einfach den nix build-Befehl aus. Dieser verweist auf das in unserem Flake definierte ISO-Profil-Target:
+
 ```bash
-sudo pacman -S manjaro-tools-iso-git git
+nix build .#nixosConfigurations.isoImage.config.system.build.isoImage
 ```
-## 🏗 Schritt 2: Einrichtung der Build-Umgebung
-Folge diesen Schritten, um deine Build-Umgebung vorzubereiten.
-
-<Steps>
-
-1. Profile klonen Klone das offizielle VeloxOS-Repository mit den ISO-Profilen auf deinen Rechner:
-```bash
-git clone [https://github.com/VeloxOSLinux/iso-profiles.git](https://github.com/VeloxOSLinux/iso-profiles.git) ~/velox-profiles
-```
-2. Manjaro-Tools konfigurieren VeloxOS benötigt spezifische Build-Einstellungen. Kopiere unsere optimierte Konfiguration:
-
-```Bash
-mkdir -p ~/.config/manjaro-tools
-cp ~/velox-profiles/.config/manjaro-tools.conf ~/.config/manjaro-tools/
-```
-3. Build-Struktur vorbereiten Um die ISO zu bauen, führen wir das Basis-Profil mit unseren VeloxOS-Anpassungen (Overlays) zusammen:
-```bash
-# Arbeitsverzeichnisse erstellen
-mkdir -p ~/iso-build/gnome
-mkdir -p ~/iso-build/custom/gnome/
-
-# Basis-Profil kopieren
-cp -r ~/velox-profiles/base/gnome/* ~/iso-build/gnome/
-
-# VeloxOS Overlays & Shared Assets anwenden
-cp -r ~/velox-profiles/gnome/* ~/iso-build/custom/gnome/
-cp -r ~/velox-profiles/shared/* ~/iso-build/custom/gnome/
-```
-</Steps>
-
-## 🚀 Schritt 3: Den Build-Prozess starten
-Sobald die Umgebung eingerichtet ist, kannst du den automatisierten Build-Prozess starten. Nutze den Befehl buildiso und verweise auf dein vorbereitetes Profil:
-```bash
-buildiso -p ~/iso-build/gnome -b stable
-```
-:::info[Hintergrund] Die Datei manjaro-tools.conf, die du kopiert hast, enthält die Pacman-Konfiguration, die dem Build-Bot mitteilt, dass er die CachyOS-Spiegelserver zusätzlich zu den Manjaro-Servern nutzen soll. :::
+:::tip[Note]
+Je nach deiner Internetgeschwindigkeit und CPU-Leistung kann dieser Vorgang einige Minuten dauern, da Nix die Basis-Pakete, unsere Zen-Kernel-Konfiguration und die vorbereitete Niri-Umgebung herunterlädt bzw. zusammenbaut.
+:::
 
 ## 📂 ISO-Datei finden
-Nachdem der Prozess erfolgreich abgeschlossen wurde, findest du deine brandneue VeloxOS ISO im Ausgabe-Verzeichnis:
+Nachdem der Prozess erfolgreich abgeschlossen wurde, erstellt Nix einen Symlink namens `result` in deinem aktuellen Verzeichnis. Dieser Link verweist direkt in den sicheren Nix-Store, wo deine fertige ISO-Datei liegt.
+
+Um den exakten Pfad zu deiner frisch gebackenen `.iso`-Datei anzuzeigen, führe Folgendes aus:
+
 ```bash
-# Standard-Ausgabepfad
-/var/cache/manjaro-tools/iso/
+ls -l result/iso/
 ```
-## 🛠 Fehlerbehebung
-* Signatur ist unbekannt (unknown trust): Falls der Build wegen GPG-Fehlern fehlschlägt, stelle sicher, dass du die CachyOS-Keys importiert hast: `sudo pacman -S cachyos-keyring cachyos-mirrorlist`.
-* Fehlende Pakete: Überprüfe doppelt, ob die `/etc/pacman.conf` deines Host-Systems die `[cachyos]` Sektionen wirklich enthält.
+Du kannst dieses Image nun mit `dd` oder Tools wie Ventoy/Etcher auf einen USB-Stick flashen und direkt in dein angepasstes VeloxOS booten!
+
+## 🛠 Fortgeschritten: Vor dem Bauen Anpassungen vornehmen
+Der größte Vorteil des deklarativen Wechsels: Wenn du eigene Pakete, Dotfiles oder spezifische Kernel-Optionen direkt in die Live-ISO einbacken möchtest, musst du keine komplexen Overlays mehr pflegen.
+
+Bearbeite einfach vor dem Ausführen des `nix build`-Befehls die Datei `iso/configuration.nix` (oder die entsprechende Modul-Datei) innerhalb des geklonten Repositories. Deine Änderungen werden beim Kompilieren sauber und direkt in das fertige Image integriert.
