@@ -1,92 +1,39 @@
 ---
-title: Updates & Repository-Verwaltung
-description: So hältst du VeloxOS aktuell und nutzt das offizielle VeloxOS-Repository.
+title: Updates & Konfigurations-Management
+description: So hältst du VeloxOS aktuell und nutzt die deklarative System-Aktualisierung über Nix Flakes.
 ---
 
-VeloxOS nutzt eine zentrale Repository-Struktur. Um maximale Stabilität bei gleichzeitiger Höchstleistung zu garantieren, kuratieren und testen wir alle Pakete – von System-Kernkomponenten bis hin zu Performance-Optimierungen – bevor sie auf dein System gelangen.
+VeloxOS bricht komplett mit dem traditionellen, imperativen Paket-Repository-Modell (wie `pacman` oder `apt`). Stattdessen werden der Systemzustand, die installierten Anwendungen und alle Updates vollständig über **Nix Flakes** verwaltet.
 
-## 📦 Die Repository-Strategie
-
-Im Gegensatz zu Standard-Distributionen bietet VeloxOS eine **einzige, verifizierte Quelle**. Dieser Ansatz verhindert Versionskonflikte und stellt sicher, dass jedes Update für das VeloxOS-Ökosystem geprüft wurde. Unser Repository vereint:
-
-1.  **VeloxOS Core:** Eigene Fixes, Themes und OS-spezifische Konfigurationen.
-2.  **Geprüfte Basis:** Stabile Systemkomponenten auf Basis von Manjaro.
-3.  **Performance:** CPU-optimierte Anwendungen und Kernel (x86-64-v3/v4) von CachyOS.
+Dieser deklarative Ansatz garantiert, dass deine System-Updates atomar ablaufen. Sollte ein Update jemals fehlschlagen oder einen Fehler verursachen, kannst du beim Systemstart im Bootloader sofort zu deiner vorherigen, funktionierenden Konfiguration zurückkehren.
 
 ---
 
-## 🔐 Sicherheit & Verifizierung
+## ❄️ Das Flake-basierte Update-Modell
 
-Alle Pakete im VeloxOS-Repository sind digital signiert, um deine Sicherheit zu gewährleisten.
+Das gesamte VeloxOS-Ökosystem – einschließlich unserer Zen-Kernel-Konfiguration, der vorbereiteten Niri-Compositor-Umgebung und den Gaming-Optimierungen – ist sauber als Code definiert. Um Systemkomponenten und Anwendungen zu aktualisieren, bringst du einfach die Inputs deines Flakes auf den neuesten Stand.
 
-### GPG-Schlüsselverwaltung
-Der offizielle VeloxOS-Signaturschlüssel ist auf allen Systemen **vorinstalliert**. Bei einer Neuinstallation ist kein manuelles Eingreifen erforderlich.
+### Aktualisierung via Terminal (Empfohlen)
+Um die neuesten Paketdefinitionen aus den offiziellen Upstream-NixOS-Kanälen abzurufen, wechsle in dein Konfigurationsverzeichnis und aktualisiere die Flake-Locks:
 
-:::tip[Manueller Schlüssel-Import]
-Falls du von einer älteren Version migrierst oder deine Schlüssel wiederherstellen musst, nutze folgende Befehle:
 ```bash
-# Schlüssel herunterladen und zu pacman hinzufügen
-curl https://downloads.veloxos.org/repos/key/veloxos.gpg | sudo pacman-key -a -
-
-# Schlüssel lokal signieren, um ihm zu vertrauen
-sudo pacman-key --lsign-key DE75DA0BF7DFECA3A588D82DF5DA023C16E45341
+cd ~/veloxos-config
+nix flake update
 ```
+
+Sobald die Datei `flake.lock` aktualisiert wurde, wendest du die Änderungen an und baust deine VeloxOS-Umgebung in einem einzigen Schritt neu:
+```bash
+sudo nixos-rebuild switch --flake .#default
+```
+:::tip[Sorgenfreie Updates]
+Falls während oder nach dem Rebuild etwas schiefgeht: Starte deinen Rechner einfach neu und wähle im systemd-boot-Menü deine vorherige System-Generation aus, um den Desktop im exakt funktionierenden Zustand wiederherzustellen.
 :::
 
-### Repository-Konfiguration
-Das Repository ist standardmäßig vorkonfiguriert. Zur manuellen Überprüfung stelle sicher, dass deine /etc/pacman.conf den folgenden Eintrag am Anfang der Repository-Sektion enthält:
-```bash
-[veloxos]
-SigLevel = Required DatabaseOptional
-Server = https://downloads.veloxos.org/repos/stable/$arch
-```
-(Hinweis: $arch wird je nach CPU-Unterstützung automatisch zu v3 oder v4 aufgelöst.)
+## 🐧 Der Zen-Kernel & Gaming-Performance
+VeloxOS wird standardmäßig mit dem Linux-Zen-Kernel ausgeliefert. Dieser ist speziell auf extrem niedrige Latenzen, hohe Reaktionsgeschwindigkeit und optimiertes Prozess-Scheduling bei anspruchsvollen Gaming-Sessions ausgelegt.
 
-## 🔄 Das System aktualisieren
-Updates werden nach erfolgreichen Tests in Zyklen veröffentlicht. Wir empfehlen die Nutzung des Terminals für maximale Transparenz während des Update-Vorgangs.
+Da VeloxOS direkt auf den riesigen, offiziellen Paket-Repositories von NixOS aufbaut, werden Kernkomponenten und Kernel-Updates vorkompiliert aus dem offiziellen Nix-Cache geladen. Das garantiert dir ein topaktuelles System, ohne dass deine CPU Pakete stundenlang selbst aus dem Quellcode kompilieren muss.
 
-Per Terminal (Empfohlen)
-Nutze den Standard-Befehl, um dein System mit dem VeloxOS-Repository zu synchronisieren:
-```bash
-sudo pacman -Syu
-```
-### Grafische Paketverwaltung (Pamac)
-Wenn du lieber "Software hinzufügen/entfernen" (Pamac) nutzt:
-
-Einheitliche Updates: Alle Updates werden über das veloxos Repository bereitgestellt.
-
-Automatische Prüfung: Signaturen werden vor jeder Installation automatisch verifiziert.
-
-## 🔄 Das System aktualisieren
-Updates werden nach erfolgreichen Tests in Zyklen veröffentlicht. Wir empfehlen die Nutzung des Terminals für maximale Transparenz während des Update-Vorgangs.
-
-Per Terminal (Empfohlen)
-Nutze den Standard-Befehl, um dein System mit dem VeloxOS-Repository zu synchronisieren:
-```bash
-sudo pacman -Syu
-```
-### Grafische Paketverwaltung (Pamac)
-Wenn du lieber "Software hinzufügen/entfernen" (Pamac) nutzt:
-
-Einheitliche Updates: Alle Updates werden über das veloxos Repository bereitgestellt.
-
-Automatische Prüfung: Signaturen werden vor jeder Installation automatisch verifiziert.
-
-## ⚡ Optimierte Pakete & Kernel
-Da VeloxOS die optimierten CachyOS-Builds direkt in das eigene Repository integriert, erhältst du die beste Performance ohne zusätzliche Quellen.
-
-Suche nach optimierten Paketen
-Du kannst prüfen, welche optimierten Pakete aktuell im Repo verfügbar sind:
-```bash
-pacman -Sl veloxos | grep [Suchbegriff]
-```
-## Der CachyOS Kernel 🐧
-VeloxOS wird mit einem vorinstallierten CachyOS-Kernel ausgeliefert, der für geringe Latenzen und Gaming optimiert ist.
-
-Automatische Updates: Der Kernel wird nahtlos über pacman -Syu aktualisiert.
-
-Kernel-Varianten: Du kannst weitere Varianten (z. B. linux-cachyos-bore) direkt aus dem VeloxOS-Repo installieren.
-
-:::caution[Wichtig]
-Füge niemals manuell offizielle Arch Linux- oder Manjaro-Mirror zu deiner pacman.conf hinzu. Dies würde den Testzyklus von VeloxOS umgehen und kann durch "Partial Upgrades" zu schweren Systeminstabilitäten führen. Verlasse dich auf das kuratierte VeloxOS-Repository für ein stabiles Erlebnis.
+:::note[Keine unvollständigen Updates mehr]
+Unter VeloxOS gehört ein zerschossenes System durch sogenannte "Partial Upgrades" (Teil-Aktualisierungen) der Vergangenheit an. Jeder `nixos-rebuild`-Vorgang erstellt eine komplett isolierte, unveränderliche Systemumgebung. Du kannst deine Konfigurationen jederzeit anpassen oder erweitern, ohne die Stabilität des Kernsystems zu gefährden.
 :::
