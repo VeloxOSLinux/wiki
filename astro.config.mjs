@@ -5,7 +5,7 @@ export default defineConfig({
 	site: 'https://wiki.veloxos.org',
 	integrations: [
 		starlight({
-			title: 'VeloxOS',
+			title: '',
 			defaultLocale: 'root',
 			customCss: [
                 './src/styles/custom.css',
@@ -14,9 +14,9 @@ export default defineConfig({
 				root: { label: 'English', lang: 'en' },
 				de: { label: 'German', lang: 'de' },
 			},
-			favicon: '/favicon.svg',
+			favicon: './src/assets/favicon.svg',
 			lastUpdated: true,
-			logo: { src: './src/assets/VeloxOS_Blank.png' },
+			logo: { src: './src/assets/logo_wText.png' },
 			sidebar: [
   {
     label: 'Getting Started',
