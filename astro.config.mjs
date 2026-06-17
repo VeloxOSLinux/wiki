@@ -36,7 +36,7 @@ export default defineConfig({
   {
     label: 'Development & Performance',
     items: [
-      { label: 'Performance & Tuning', link: '/references/performance-kernel/' },
+      { label: 'Performance & Tuning', link: '/reference/performance-kernel/' },
       { label: 'Building VeloxOS from Source', link: '/guides/build/' },
     ],
   },
