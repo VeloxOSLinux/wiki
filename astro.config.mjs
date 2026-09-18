@@ -16,7 +16,7 @@ export default defineConfig({
 			},
 			favicon: './src/assets/favicon.svg',
 			lastUpdated: true,
-			logo: { src: './src/assets/logo_wText.png' },
+			logo: { src: './src/assets/NewLogo_wText.webp' },
 			sidebar: [
   {
     label: 'Getting Started',
